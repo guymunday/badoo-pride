@@ -9,6 +9,7 @@ const ShadowTextStyles = styled.section`
   justify-content: center;
   h1 {
     font-size: 6rem;
+    transition: 0.1s ease;
   }
 `;
 
@@ -17,7 +18,7 @@ export default function ShadowText() {
   const textRef = React.useRef(null);
 
   const shadow = (e) => {
-    const walk = 25;
+    const walk = 10;
 
     const { offsetHeight: height, offsetWidth: width } = containerRef.current;
     let { clientX: x, clientY: y } = e;
@@ -27,7 +28,6 @@ export default function ShadowText() {
 
     textRef.current.style.textShadow = `
       ${xWalk}px ${yWalk}px 0 red,
-      ${xWalk * 1.2}px ${yWalk * 1.2}px 0 black,
       ${xWalk * 2}px ${yWalk * 2}px 0 orange,
       ${xWalk * 3}px ${yWalk * 3}px 0 yellow,
       ${xWalk * 4}px ${yWalk * 4}px 0 green,
