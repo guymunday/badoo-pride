@@ -28,12 +28,12 @@ export default function ShadowText() {
 
     textRef.current.style.textShadow = `
       ${xWalk}px ${yWalk}px 0 red,
-      ${xWalk * 2}px ${yWalk * 2}px 0 orange,
-      ${xWalk * 3}px ${yWalk * 3}px 0 yellow,
-      ${xWalk * 4}px ${yWalk * 4}px 0 green,
-      ${xWalk * 5}px ${yWalk * 5}px 0 blue,
-      ${xWalk * 6}px ${yWalk * 6}px 0 indigo,
-      ${xWalk * 7}px ${yWalk * 7}px 0 violet
+      ${xWalk * 2}px ${yWalk * 2}px 1px orange,
+      ${xWalk * 3}px ${yWalk * 3}px 1px yellow,
+      ${xWalk * 4}px ${yWalk * 4}px 1px green,
+      ${xWalk * 5}px ${yWalk * 5}px 1px blue,
+      ${xWalk * 6}px ${yWalk * 6}px 1px indigo,
+      ${xWalk * 7}px ${yWalk * 7}px 1px violet
     `;
   };
 
