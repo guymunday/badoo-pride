@@ -10,6 +10,7 @@ const ShadowTextStyles = styled.section`
   h1 {
     font-size: 6rem;
     transition: 0.1s ease;
+    color: white;
   }
 `;
 
@@ -27,7 +28,7 @@ export default function ShadowText() {
     const yWalk = Math.round((y / height) * walk - walk / 2);
 
     textRef.current.style.textShadow = `
-      ${xWalk}px ${yWalk}px 0 red,
+      ${xWalk}px ${yWalk}px 1px red,
       ${xWalk * 2}px ${yWalk * 2}px 1px orange,
       ${xWalk * 3}px ${yWalk * 3}px 1px yellow,
       ${xWalk * 4}px ${yWalk * 4}px 1px green,
@@ -39,9 +40,6 @@ export default function ShadowText() {
 
   React.useEffect(() => {
     containerRef.current.addEventListener("mousemove", shadow);
-    return () => {
-      containerRef.current.removeEventListener("mousemove", shadow);
-    };
   });
 
   return (
