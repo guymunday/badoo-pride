@@ -1,23 +1,17 @@
-/* @font-face {
-  font-family: "Good Regular";
-  src: url("../assets/fonts/GoodSans-Regular.otf") format("opentype");
+@font-face {
+  font-family: "Windsor";
+  src: url("../assets/fonts/windsor.woff") format("woff");
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Good Bold";
-  src: url("../assets/fonts/GoodSans-Bold.otf") format("opentype");
+  font-family: "Windsor Elongated";
+  src: url("../assets/fonts/windsor-elongated.woff") format("woff");
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Recoleta Medium";
-  src: url("../assets/fonts/RecoletaMedium.woff") format("woff");
+  font-family: "Mabry Pro";
+  src: url("../assets/fonts/MabryPro.otf") format("opentype");
   font-display: swap;
 }
-
-@font-face {
-  font-family: "Recoleta Regular";
-  src: url("../assets/fonts/RecoletaRegular.woff") format("woff");
-  font-display: swap;
-} */

@@ -1,11 +1,10 @@
-import { Image } from "react-datocms";
-import FeaturedCarousel from "./homepage/FeaturedCarousel";
+import HeroSection from "./HeroSection";
 import Slices from "./homepage/Slices";
 
 export default function HomepageContent({ data }) {
   return (
     <>
-      <Image data={data?.homePage?.heroImage?.responsiveImage} />
+      <HeroSection data={data} />
       <Slices slices={data?.homePage?.contentBlocks} />
     </>
   );

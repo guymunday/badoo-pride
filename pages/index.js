@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { request } from "../lib/datocms";
 import HomepageContent from "../components/HomepageContent";
 
@@ -21,22 +20,39 @@ export default function Home({ english, spanish, french }) {
 const HOMEPAGE_QUERY_ENGLISH = `
 query HomePage($isBlank: BooleanType = "") {
   homePage(locale: en) {
+
+    presents
+    aLetterFrom
+
       contentBlocks {
+      ... on LettersFromThumbnailRecord {
+        _modelApiKey
+        thumbnails
+      }
       ... on WordBlockRecord {
         copy
         _modelApiKey
+             icon {
+          alt
+          url
+        }
       }
       ... on FeaturedVideoCollectionRecord {
         _modelApiKey
         video {
+          title
           videos {
             videoUrl {
               url
+              providerUid
               title
             }
           }
         }
       }
+    }
+       heroVideo {
+      url
     }
     heroImage {
       responsiveImage(imgixParams: {auto: format, fit: crop}) {
@@ -61,22 +77,39 @@ query HomePage($isBlank: BooleanType = "") {
 const HOMEPAGE_QUERY_SPANISH = `
   query HomePage($isBlank: BooleanType = "") {
     homePage(locale: es) {
+
+      presents
+    aLetterFrom
+
           contentBlocks {
+                  ... on LettersFromThumbnailRecord {
+        _modelApiKey
+        thumbnails
+      }
       ... on WordBlockRecord {
         copy
         _modelApiKey
+             icon {
+          alt
+          url
+        }
       }
       ... on FeaturedVideoCollectionRecord {
         _modelApiKey
         video {
+          title
           videos {
             videoUrl {
               url
               title
+              providerUid
             }
           }
         }
       }
+    }
+       heroVideo {
+      url
     }
     heroImage {
       responsiveImage(imgixParams: {auto: format, fit: crop}) {
@@ -100,23 +133,41 @@ const HOMEPAGE_QUERY_SPANISH = `
 
 const HOMEPAGE_QUERY_FRENCH = `
   query HomePage($isBlank: BooleanType = "") {
+
     homePage(locale: fr) {
+
+      presents
+    aLetterFrom
+
           contentBlocks {
+                  ... on LettersFromThumbnailRecord {
+        _modelApiKey
+        thumbnails
+      }
       ... on WordBlockRecord {
         copy
         _modelApiKey
+             icon {
+          alt
+          url
+        }
       }
       ... on FeaturedVideoCollectionRecord {
         _modelApiKey
         video {
+          title
           videos {
             videoUrl {
               url
               title
+              providerUid
             }
           }
         }
       }
+    }
+       heroVideo {
+      url
     }
     heroImage {
       responsiveImage(imgixParams: {auto: format, fit: crop}) {
