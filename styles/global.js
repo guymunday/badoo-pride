@@ -61,6 +61,22 @@ const globalCss = css`
     object-fit: cover;
   }
 
+  ul {
+    list-style-position: outside;
+    margin-left: 18px !important;
+    li {
+      margin-bottom: 1rem !important;
+    }
+  }
+
+  ol {
+    list-style-position: outside;
+    margin-left: 22px !important;
+    li {
+      margin-bottom: 1rem !important;
+    }
+  }
+
   .iframe-container {
     position: relative;
     width: 100%;
@@ -71,6 +87,33 @@ const globalCss = css`
       left: 0;
       width: 100%;
       height: 100%;
+    }
+  }
+
+  .sanitised-html {
+    * {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+    }
+    *:not(li) {
+      margin: 0 0 30px 0;
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+
+    .sanitised-anchor {
+      text-decoration: underline;
     }
   }
 `;

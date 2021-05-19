@@ -51,7 +51,7 @@ export default function RainbowBackground({ children }) {
 
   return (
     <div
-      style={{ background: "#ff4d88", padding: 10 }}
+      style={{ background: "#ff4d88", padding: 10, position: "relative" }}
       ref={ref}
     >
       {children}

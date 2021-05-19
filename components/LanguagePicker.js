@@ -8,6 +8,8 @@ const LanguagePickerContainer = styled.div`
   position: fixed;
   z-index: 99;
   padding: 30px;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;

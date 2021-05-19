@@ -8,6 +8,9 @@ const StyledWords = styled.div`
   padding: 120px 20px;
   font-weight: 700;
   line-height: 1.3;
+  @media screen and (max-width: 768px) {
+    font-size: 1.3rem;
+  }
   .word-block-inner {
     max-width: 700px;
     margin: auto;

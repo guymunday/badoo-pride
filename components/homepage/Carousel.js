@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import heartIcon from "../../assets/icons/heart-icon.svg";
 import { gsap } from "gsap";
+import { useRouter } from "next/router";
 
 const Title = styled.h2`
   text-align: center;
@@ -71,6 +72,8 @@ const CarouselStyles = styled.div`
 
 export default function Carousel({ data }) {
   const [slides, setSlides] = React.useState(0);
+  const router = useRouter();
+  const { locale } = router;
 
   React.useEffect(() => {
     gsap.from(".iframe-container", {
@@ -93,7 +96,13 @@ export default function Carousel({ data }) {
         <Title>{data?.video?.title}</Title>
         <CarouselStyles>
           <button className="carousel-button" onClick={handlePreviousButton}>
-            <span>Previous</span>
+            <span>
+              {locale === "es"
+                ? "Anterior"
+                : locale === "fr"
+                ? "Précédent"
+                : "Previous"}
+            </span>
           </button>
 
           {data?.video?.videos.map((v, i) => {
@@ -107,9 +116,21 @@ export default function Carousel({ data }) {
                           key={i}
                           title={v?.videoUrl?.title}
                           src={`https://www.youtube.com/embed/${v?.videoUrl?.providerUid}`}
-                          frameborder="0"
+                          frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowfullscreen
+                          allowFullScreen
+                        />
+                      </div>
+                    )}
+                    {v?.videoUrl?.url.includes("vimeo") && (
+                      <div className="iframe-container">
+                        <iframe
+                          key={i}
+                          title={v?.videoUrl?.title}
+                          src={`https://player.vimeo.com/video/${v?.videoUrl?.providerUid}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+                          frameBorder="0"
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          allowFullScreen
                         />
                       </div>
                     )}
@@ -123,7 +144,13 @@ export default function Carousel({ data }) {
             className="carousel-button carousel-button-next"
             onClick={handleNextButton}
           >
-            <span>Next</span>
+            <span>
+              {locale === "es"
+                ? "Siguiente"
+                : locale === "fr"
+                ? "Suivant"
+                : "Next"}
+            </span>
           </button>
 
           <div className="carousel-number-buttons">
@@ -146,18 +173,3 @@ export default function Carousel({ data }) {
     </>
   );
 }
-
-// {
-//   v?.videoUrl?.url.includes("vimeo") && (
-//     <div className="iframe-container">
-//       <iframe
-//         key={i}
-//         title={v?.videoUrl?.title}
-//         src={`https://player.vimeo.com/video/${v?.videoUrl?.providerUid}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-//         frameborder="0"
-//         allow="autoplay; fullscreen; picture-in-picture"
-//         allowfullscreen
-//       />
-//     </div>
-//   );
-// }

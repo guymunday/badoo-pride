@@ -1,8 +1,8 @@
-import FeaturedCarousel from "./FeaturedCarousel";
 import WordBlock from "./WordBlock";
-import Carousel from "./Carousel"
+import Carousel from "./Carousel";
+import Thumbnails from "./Thumbnails";
 
-export default function Slices({ slices }) {
+export default function Slices({ slices, thumbnails }) {
   console.log(slices);
 
   const slice = slices.map((s, i) => {
@@ -10,7 +10,7 @@ export default function Slices({ slices }) {
       case "word_block":
         return <WordBlock key={i} data={s} />;
       case "letters_from_thumbnail":
-        return <>Thumbnails</>;
+        return <Thumbnails data={thumbnails} />;
       case "featured_video_collection":
         return <Carousel key={i} data={s} />;
       default:
