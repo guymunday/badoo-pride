@@ -11,7 +11,6 @@ export default function Layout({ children }) {
         <LanguagePicker />
         <Logo />
         <main>{children}</main>
-        <footer>Footer</footer>
       </RainbowBackgroundFade>
     </>
   );

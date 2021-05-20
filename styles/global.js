@@ -45,6 +45,11 @@ const globalCss = css`
     line-height: 1.1;
   }
 
+  a {
+    font-size: inherit;
+    color: inherit;
+  }
+
   button {
     cursor: pointer;
     font-size: inherit;

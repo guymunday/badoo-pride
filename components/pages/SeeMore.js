@@ -10,17 +10,26 @@ const SeeMoreHeader = styled.div`
   justify-content: center;
   h2 {
     margin-right: 20px;
+    font-family: "Mabry Pro", sans-serif;
+    font-weight: 400;
   }
 `;
 
 const SeeMoreStyles = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
   gap: 50px;
   max-width: 1100px;
   margin: 60px auto 100px auto;
+  @media screen and (max-width: 900px) {
+    gap: 30px;
+  }
   .see-more-inner {
     text-align: center;
+    @media screen and (max-width: 768px) {
+      grid-column: span 3;
+    }
     .see-more-image {
       height: 325px;
     }
@@ -38,11 +47,22 @@ const SeeMoreStyles = styled.div`
 
 export default function SeeMore({ data, letterFrom }) {
   const router = useRouter();
+  const { locale } = router;
 
   return (
     <>
-      <SeeMoreHeader>
-        <h2>See More</h2> <img src={eyesIcon} alt="eyes icon" />
+      <SeeMoreHeader
+        onClick={() => router.push(`/page/1#thumbnails`)}
+        role="button"
+      >
+        <h2>
+          {locale === "es"
+            ? "Ver más"
+            : locale === "fr"
+            ? "Afficher plus"
+            : "See more"}
+        </h2>{" "}
+        <img src={eyesIcon} alt="eyes icon" />
       </SeeMoreHeader>
       <SeeMoreStyles>
         {data?.map((t, i) => {

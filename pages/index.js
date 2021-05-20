@@ -1,24 +1,52 @@
 import { useRouter } from "next/router";
 import { request } from "../lib/datocms";
 import HomepageContent from "../components/HomepageContent";
+import Footer from "../components/Footer";
 
 export default function Home({ english, spanish, french }) {
   const router = useRouter();
   const { locale } = router;
 
   if (locale === "es") {
-    return <HomepageContent data={spanish} />;
+    return (
+      <>
+        <HomepageContent data={spanish} />
+        <Footer data={spanish?.footer} />
+      </>
+    );
   }
 
   if (locale === "fr") {
-    return <HomepageContent data={french} />;
+    return (
+      <>
+        <HomepageContent data={french} />
+        <Footer data={french?.footer} />
+      </>
+    );
   }
 
-  return <HomepageContent data={english} />;
+  return (
+    <>
+      <HomepageContent data={english} />
+      <Footer data={english?.footer} />
+    </>
+  );
 }
 
 const HOMEPAGE_QUERY_ENGLISH = `
 query HomePage($isBlank: BooleanType = "") {
+  menu(locale: en) {
+    menuItems {
+      title
+      slug
+    }
+  }
+  footer: sponsorMessageFooter(locale: en) {
+    termsLink
+    privacyLink
+    cookiesLink
+    sponsorMessage
+  }
   homePage(locale: en) {
     presents
     aLetterFrom
@@ -91,6 +119,18 @@ query HomePage($isBlank: BooleanType = "") {
 
 const HOMEPAGE_QUERY_SPANISH = `
 query HomePage($isBlank: BooleanType = "") {
+  menu(locale: en) {
+    menuItems {
+      title
+      slug
+    }
+  }
+  footer: sponsorMessageFooter(locale: es) {
+    termsLink
+    privacyLink
+    cookiesLink
+    sponsorMessage
+  }  
   homePage(locale: es) {
     presents
     aLetterFrom
@@ -163,6 +203,18 @@ query HomePage($isBlank: BooleanType = "") {
 
 const HOMEPAGE_QUERY_FRENCH = `
 query HomePage($isBlank: BooleanType = "") {
+  menu(locale: en) {
+    menuItems {
+      title
+      slug
+    }
+  }
+  footer: sponsorMessageFooter(locale: fr) {
+    termsLink
+    privacyLink
+    cookiesLink
+    sponsorMessage
+  }
   homePage(locale: fr) {
     presents
     aLetterFrom

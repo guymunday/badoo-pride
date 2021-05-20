@@ -71,6 +71,7 @@ const Pagination = styled.div`
 
 export default function Thumbnails({ data, aLetterFrom }) {
   const router = useRouter();
+  const { locale } = router;
 
   return (
     <>
@@ -109,7 +110,11 @@ export default function Thumbnails({ data, aLetterFrom }) {
               }
             >
               <img className="left-arrow" src={rightArrow} alt="eyes icon" />{" "}
-              Previous
+              {locale === "es"
+                ? "Anterior"
+                : locale === "fr"
+                ? "Précédent"
+                : "Previous"}
             </div>
           )}
           <div />
@@ -122,7 +127,12 @@ export default function Thumbnails({ data, aLetterFrom }) {
                 )
               }
             >
-              <img src={eyesIcon} alt="eyes icon" /> Next{" "}
+              <img src={eyesIcon} alt="eyes icon" />{" "}
+              {locale === "es"
+                ? "Siguiente"
+                : locale === "fr"
+                ? "Suivant"
+                : "Next"}{" "}
               <img src={rightArrow} alt="right arrow icon" />
             </div>
           )}
@@ -136,7 +146,12 @@ export default function Thumbnails({ data, aLetterFrom }) {
               className="pagination-link"
               onClick={() => router.push(`/page/2#thumbnails`)}
             >
-              <img src={eyesIcon} alt="eyes icon" /> Next{" "}
+              <img src={eyesIcon} alt="eyes icon" />{" "}
+              {locale === "es"
+                ? "Siguiente"
+                : locale === "fr"
+                ? "Suivant"
+                : "Next"}{" "}
               <img src={rightArrow} alt="right arrow icon" />
             </div>
           )}

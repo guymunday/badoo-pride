@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { request } from "../lib/datocms";
 import Slices from "../components/pages/Slices";
 import SeeMore from "../components/pages/SeeMore";
+import Footer from "../components/Footer";
 
 export default function ContentPage({ english, spanish, french }) {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function ContentPage({ english, spanish, french }) {
           data={spanish?.seeMore}
           letterFrom={spanish?.homePage?.aLetterFrom}
         />
+        <Footer data={spanish?.footer} />
       </>
     );
   }
@@ -35,6 +37,7 @@ export default function ContentPage({ english, spanish, french }) {
           data={french?.seeMore}
           letterFrom={spanish?.homePage?.aLetterFrom}
         />
+        <Footer data={french?.footer} />
       </>
     );
   }
@@ -50,6 +53,7 @@ export default function ContentPage({ english, spanish, french }) {
         data={english?.seeMore}
         letterFrom={spanish?.homePage?.aLetterFrom}
       />
+      <Footer data={english?.footer} />
     </>
   );
 }
@@ -64,6 +68,12 @@ query PagesQuery {
 
 const PAGE_QUERY_ENGLISH = `
 query PageQuery($slug: String!, $isBlank: BooleanType = "") {
+  footer: sponsorMessageFooter(locale: en) {
+    termsLink
+    privacyLink
+    cookiesLink
+    sponsorMessage
+  }
   allPages(locale: en, filter: {slug: {eq: $slug}}) {
     slug
     title
@@ -156,6 +166,12 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "") {
 
 const PAGE_QUERY_SPANISH = `
 query PageQuery($slug: String!, $isBlank: BooleanType = "") {
+  footer: sponsorMessageFooter(locale: es) {
+    termsLink
+    privacyLink
+    cookiesLink
+    sponsorMessage
+  }
   allPages(locale: es, filter: {slug: {eq: $slug}}) {
     slug
     title
@@ -248,6 +264,12 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "") {
 
 const PAGE_QUERY_FRENCH = `
 query PageQuery($slug: String!, $isBlank: BooleanType = "") {
+  footer: sponsorMessageFooter(locale: fr) {
+    termsLink
+    privacyLink
+    cookiesLink
+    sponsorMessage
+  }
   allPages(locale: fr, filter: {slug: {eq: $slug}}) {
     slug
     title
