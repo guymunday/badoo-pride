@@ -32,7 +32,7 @@ const ThumbnailGrid = styled.div`
       grid-column: span 6;
       .thumbnail-image {
         :hover {
-          transform: rotate(-4deg);
+          transform: rotate(-3deg);
         }
       }
       @media screen and (max-width: 768px) {
@@ -46,7 +46,7 @@ const ThumbnailGrid = styled.div`
       height: 400px;
       transition: 0.3s ease;
       :hover {
-        transform: rotate(4deg);
+        transform: rotate(3deg);
       }
     }
     p {

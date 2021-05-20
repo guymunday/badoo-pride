@@ -32,6 +32,10 @@ const SeeMoreStyles = styled.div`
     }
     .see-more-image {
       height: 325px;
+      transition: 0.3s ease;
+      :hover {
+        transform: rotate(3deg);
+      }
     }
     p {
       margin: 30px auto 10px auto;

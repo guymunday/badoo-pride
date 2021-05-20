@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <GlobalStyles />
-      {loader && <LoadingScreen />}
+      {/* {loader && <LoadingScreen />} */}
       <Layout>
         <Component {...pageProps} />
       </Layout>

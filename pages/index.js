@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { request } from "../lib/datocms";
 import HomepageContent from "../components/HomepageContent";
 import Footer from "../components/Footer";
+import Menu from "../components/Menu";
 
 export default function Home({ english, spanish, french }) {
   const router = useRouter();
@@ -10,6 +11,7 @@ export default function Home({ english, spanish, french }) {
   if (locale === "es") {
     return (
       <>
+        <Menu />
         <HomepageContent data={spanish} />
         <Footer data={spanish?.footer} />
       </>
@@ -19,6 +21,7 @@ export default function Home({ english, spanish, french }) {
   if (locale === "fr") {
     return (
       <>
+        <Menu />
         <HomepageContent data={french} />
         <Footer data={french?.footer} />
       </>
@@ -27,6 +30,7 @@ export default function Home({ english, spanish, french }) {
 
   return (
     <>
+      <Menu />
       <HomepageContent data={english} />
       <Footer data={english?.footer} />
     </>
