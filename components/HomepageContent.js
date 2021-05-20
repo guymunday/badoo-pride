@@ -13,6 +13,7 @@ export default function HomepageContent({ data }) {
       <Slices
         slices={data?.homePage?.contentBlocks}
         thumbnails={data?.allPages}
+        aLetterFrom={data?.homePage?.aLetterFrom}
       />
     </>
   );

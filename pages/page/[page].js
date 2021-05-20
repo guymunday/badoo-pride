@@ -238,7 +238,7 @@ query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
 export async function getStaticProps({ params }) {
   const { page } = params;
 
-  const limit = 2;
+  const limit = 8;
   const skip = (parseInt(page) - 1) * limit;
 
   const english = await request({

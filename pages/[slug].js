@@ -1,12 +1,11 @@
 import { useRouter } from "next/router";
 import { request } from "../lib/datocms";
 import Slices from "../components/pages/Slices";
+import SeeMore from "../components/pages/SeeMore";
 
 export default function ContentPage({ english, spanish, french }) {
   const router = useRouter();
   const { locale } = router;
-
-  console.log(router);
 
   if (locale === "es") {
     return (
@@ -15,6 +14,10 @@ export default function ContentPage({ english, spanish, french }) {
           slices={spanish?.allPages[0]?.contentBlocks}
           letterFrom={spanish?.homePage?.aLetterFrom}
           title={spanish?.allPages[0]?.title}
+        />
+        <SeeMore
+          data={spanish?.seeMore}
+          letterFrom={spanish?.homePage?.aLetterFrom}
         />
       </>
     );
@@ -28,6 +31,10 @@ export default function ContentPage({ english, spanish, french }) {
           letterFrom={french?.homePage?.aLetterFrom}
           title={french?.allPages[0]?.title}
         />
+        <SeeMore
+          data={french?.seeMore}
+          letterFrom={spanish?.homePage?.aLetterFrom}
+        />
       </>
     );
   }
@@ -38,6 +45,10 @@ export default function ContentPage({ english, spanish, french }) {
         slices={english?.allPages[0]?.contentBlocks}
         letterFrom={english?.homePage?.aLetterFrom}
         title={english?.allPages[0]?.title}
+      />
+      <SeeMore
+        data={english?.seeMore}
+        letterFrom={spanish?.homePage?.aLetterFrom}
       />
     </>
   );
@@ -52,7 +63,7 @@ query PagesQuery {
 `;
 
 const PAGE_QUERY_ENGLISH = `
-query PageQuery($slug: String!) {
+query PageQuery($slug: String!, $isBlank: BooleanType = "") {
   allPages(locale: en, filter: {slug: {eq: $slug}}) {
     slug
     title
@@ -119,11 +130,32 @@ query PageQuery($slug: String!) {
   homePage(locale: en) {
     aLetterFrom
   }
+  seeMore: allPages(locale: en, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
+    id
+    slug
+    title
+    contentBlocks {
+      ... on HeroSectionRecord {
+        heroImage {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
+            src
+            title
+            alt
+            base64
+            bgColor
+            width
+            height
+            aspectRatio
+          }
+        }
+      }
+    }
+  }
 }
 `;
 
 const PAGE_QUERY_SPANISH = `
-query PageQuery($slug: String!) {
+query PageQuery($slug: String!, $isBlank: BooleanType = "") {
   allPages(locale: es, filter: {slug: {eq: $slug}}) {
     slug
     title
@@ -190,11 +222,32 @@ query PageQuery($slug: String!) {
   homePage(locale: es) {
     aLetterFrom
   }
+  seeMore: allPages(locale: es, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
+    id
+    slug
+    title
+    contentBlocks {
+      ... on HeroSectionRecord {
+        heroImage {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
+            src
+            title
+            alt
+            base64
+            bgColor
+            width
+            height
+            aspectRatio
+          }
+        }
+      }
+    }
+  }
 }
 `;
 
 const PAGE_QUERY_FRENCH = `
-query PageQuery($slug: String!) {
+query PageQuery($slug: String!, $isBlank: BooleanType = "") {
   allPages(locale: fr, filter: {slug: {eq: $slug}}) {
     slug
     title
@@ -260,6 +313,27 @@ query PageQuery($slug: String!) {
   }
   homePage(locale: fr) {
     aLetterFrom
+  }
+  seeMore: allPages(locale: fr, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
+    id
+    slug
+    title
+    contentBlocks {
+      ... on HeroSectionRecord {
+        heroImage {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
+            src
+            title
+            alt
+            base64
+            bgColor
+            width
+            height
+            aspectRatio
+          }
+        }
+      }
+    }
   }
 }
 `;

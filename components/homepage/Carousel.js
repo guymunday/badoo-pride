@@ -65,6 +65,10 @@ const CarouselStyles = styled.div`
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: -1;
+        img {
+          width: 35px;
+          display: block;
+        }
       }
     }
   }

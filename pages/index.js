@@ -65,25 +65,26 @@ query HomePage($isBlank: BooleanType = "") {
       }
     }
   }
-  allPages(locale: en, filter: {title: {isBlank: $isBlank}}, first: "2") {
+  allPages(locale: en, filter: {title: {isBlank: $isBlank}}, first: 8) {
     id
     slug
     title
     contentBlocks {
       ... on HeroSectionRecord {
         heroImage {
-          responsiveImage {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
+            src
+            title
             alt
             base64
             bgColor
-            title
+            width
+            height
+            aspectRatio
           }
         }
       }
     }
-  }
-  _allPagesMeta(locale: en) {
-    count
   }
 }
 `;
@@ -136,25 +137,26 @@ query HomePage($isBlank: BooleanType = "") {
       }
     }
   }
-  allPages(locale: es, filter: {title: {isBlank: $isBlank}}, first: "2") {
+  allPages(locale: es, filter: {title: {isBlank: $isBlank}}, first: 8) {
     id
     slug
     title
     contentBlocks {
       ... on HeroSectionRecord {
         heroImage {
-          responsiveImage {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
+            src
+            title
             alt
             base64
             bgColor
-            title
+            width
+            height
+            aspectRatio
           }
         }
       }
     }
-  }
-  _allPagesMeta(locale: es) {
-    count
   }
 }
 `;
@@ -207,25 +209,26 @@ query HomePage($isBlank: BooleanType = "") {
       }
     }
   }
-  allPages(locale: fr, filter: {title: {isBlank: $isBlank}}, first: "2") {
+  allPages(locale: fr, filter: {title: {isBlank: $isBlank}}, first: 8) {
     id
     slug
     title
     contentBlocks {
       ... on HeroSectionRecord {
         heroImage {
-          responsiveImage {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
+            src
+            title
             alt
             base64
             bgColor
-            title
+            width
+            height
+            aspectRatio
           }
         }
       }
     }
-  }
-  _allPagesMeta(locale: fr) {
-    count
   }
 }
 `;
