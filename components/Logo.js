@@ -10,6 +10,9 @@ const LogoStyles = styled.div`
   transform: translate(-50%, 0);
   cursor: pointer;
   padding: 30px;
+  @media screen and (max-width: 320px) {
+    padding: 40px;
+  }
   img {
     object-fit: fill;
   }

@@ -8,6 +8,7 @@ import styled from "styled-components";
 const AboutHeader = styled.div`
   text-align: center;
   padding: 120px 20px 0 20px;
+  width: 100%;
   .title {
     font-size: 8.5rem;
     line-height: 0.8;

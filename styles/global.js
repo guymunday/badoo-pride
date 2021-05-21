@@ -48,6 +48,7 @@ const globalCss = css`
   a {
     font-size: inherit;
     color: inherit;
+    cursor: pointer;
   }
 
   button {
@@ -120,6 +121,56 @@ const globalCss = css`
     .sanitised-anchor {
       text-decoration: underline;
     }
+  }
+
+  .cookies-container {
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--colour-1);
+    padding: 10px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    a {
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .cookies-inner {
+    max-width: 700px;
+  }
+
+  .cookies-buttons {
+    display: flex;
+    margin-left: 10px;
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 600px) {
+      margin-left: 0;
+      margin-top: 10px;
+      width: auto;
+    }
+  }
+
+  #rcc-decline-button {
+    text-decoration: underline;
+  }
+
+  #rcc-confirm-button {
+    background: #fff;
+    color: var(--colour-1);
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0 10px;
   }
 `;
 

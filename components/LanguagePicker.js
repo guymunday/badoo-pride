@@ -14,11 +14,19 @@ const LanguagePickerContainer = styled.div`
   flex-direction: column;
   overflow: hidden;
   color: var(--white);
+  @media screen and (max-width: 320px) {
+    padding: 20px 20px 30px 20px;
+  }
   .language-picker-item {
     a {
       font-size: 20px;
       color: inherit;
       text-decoration: none;
+    }
+    span {
+      @media screen and (max-width: 400px) {
+        display: none;
+      }
     }
   }
 `;
@@ -85,6 +93,9 @@ export default function LanguagePicker() {
           <Link href={`${asPath}`} locale="en">
             English
           </Link>
+          {locale === "en" && (
+            <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
+          )}
         </div>
         <div
           className="language-picker-item"
@@ -93,6 +104,9 @@ export default function LanguagePicker() {
           <Link href={`${asPath}`} locale="es">
             Español
           </Link>
+          {locale === "es" && (
+            <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
+          )}
         </div>
         <div
           className="language-picker-item"
@@ -101,6 +115,9 @@ export default function LanguagePicker() {
           <Link href={`${asPath}`} locale="fr">
             Français
           </Link>
+          {locale === "fr" && (
+            <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
+          )}
         </div>
       </LanguagePickerContainer>
     </>

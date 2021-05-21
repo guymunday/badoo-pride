@@ -1,41 +1,22 @@
 import * as React from "react";
-import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
-
 import Layout from "../components/Layout";
-
 import "../styles/fonts.css";
 import reset from "../styles/reset";
 import global from "../styles/global";
-import LoadingScreen from "../components/LoadingScreen";
+import CookiesBanner from "../components/CookiesBanner";
+// import LoadingScreen from "../components/LoadingScreen";
 
 const GlobalStyles = createGlobalStyle`
 ${reset}
 ${global}
 `;
 
-function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-  const [loader, setLoader] = React.useState(false);
-
-  React.useEffect(() => {
-    router.events.on("routeChangeStart", () => {
-      setLoader(true);
-    });
-
-    router.events.on("routeChangeComplete", () => {
-      setTimeout(() => {
-        setLoader(false);
-      }, 2000);
-    });
-
-    router.events.on("routeChangeError", () => {});
-  }, []);
-
+function MyApp({ Component, pageProps }) {  
   return (
     <>
       <GlobalStyles />
-      {/* {loader && <LoadingScreen />} */}
+      <CookiesBanner />
       <Layout>
         <Component {...pageProps} />
       </Layout>

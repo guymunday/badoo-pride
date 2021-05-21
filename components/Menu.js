@@ -10,6 +10,17 @@ const Hamburger = styled.button`
   right: 0;
   z-index: 99;
   padding: 30px;
+  font-size: 20px;
+  @media screen and (max-width: 320px) {
+    padding: 20px;
+  }
+  .hamburger-icon {
+    fill: #fff;
+    margin-right: 10px;
+    @media screen and (max-width: 400px) {
+      display: none;
+    }
+  }
 `;
 
 const Navigation = styled.nav`
@@ -82,6 +93,16 @@ export default function Menu({ data }) {
   return (
     <>
       <Hamburger onClick={handleMenuOpen}>
+        <svg
+          className="hamburger-icon"
+          viewBox="0 0 100 80"
+          width="25"
+          height="25"
+        >
+          {!menuOpen && <rect width="100" height="10"></rect>}
+          <rect y="30" width="100" height="10"></rect>
+          {!menuOpen && <rect y="60" width="100" height="10"></rect>}
+        </svg>
         {menuOpen ? (
           <>
             {locale === "es" ? "Cerrar" : locale === "fr" ? "Fermer" : "Close"}

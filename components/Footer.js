@@ -13,6 +13,9 @@ const FooterStyles = styled.footer`
     height: 1px;
     background: #fff;
     margin: 0 30px;
+    @media screen and (max-width: 768px) {
+      margin: 0 10px;
+    }
   }
   .footer-inner {
     display: flex;
@@ -20,6 +23,7 @@ const FooterStyles = styled.footer`
     padding: 30px;
     @media screen and (max-width: 768px) {
       flex-direction: column;
+      padding: 30px 10px;
     }
     .footer-left,
     .footer-right {
