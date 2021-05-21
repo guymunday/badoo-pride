@@ -55,7 +55,7 @@ export default function LanguagePicker() {
     gsap.set(ref.current, {
       height: 30,
     });
-  });
+  }, []);
 
   const handleMouseOver = () => {
     gsap.to(ref.current, {
