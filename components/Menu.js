@@ -25,7 +25,7 @@ const Hamburger = styled.button`
 
 const Navigation = styled.nav`
   position: fixed;
-  top: 0;
+  top: -100%;
   left: 0;
   width: 100%;
   height: 100%;
@@ -64,8 +64,10 @@ export default function Menu({ data }) {
   }, []);
 
   React.useEffect(() => {
-    gsap.from(menuRef.current, {
-      yPercent: -100,
+    gsap.to(menuRef.current, {
+      yPercent: 100,
+      duration: 0.7,
+      ease: "power2.out",
     });
   }, [menuOpen]);
 
@@ -82,6 +84,8 @@ export default function Menu({ data }) {
   const exitAnimation = () => {
     return gsap.to(menuRef.current, {
       yPercent: -100,
+      duration: 0.7,
+      ease: "power2.in",
     });
   };
 
