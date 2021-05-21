@@ -11,7 +11,7 @@ export default function Home({ english, spanish, french }) {
   if (locale === "es") {
     return (
       <>
-        <Menu data={spansish?.menu} />
+        <Menu data={spanish?.menu} />
         <HomepageContent data={spanish} />
         <Footer data={spanish?.footer} />
       </>
