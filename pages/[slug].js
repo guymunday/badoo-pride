@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import { request } from "../lib/datocms";
+import Head from "next/head";
+import { renderMetaTags } from "react-datocms";
 import Slices from "../components/pages/Slices";
 import SeeMore from "../components/pages/SeeMore";
 import Footer from "../components/Footer";
@@ -12,6 +14,7 @@ export default function ContentPage({ english, spanish, french }) {
   if (locale === "es") {
     return (
       <>
+        <Head>{renderMetaTags(spanish?.allPages[0]?.seo)}</Head>
         <Menu data={spanish?.menu} />
         <Slices
           slices={spanish?.allPages[0]?.contentBlocks}
@@ -30,6 +33,7 @@ export default function ContentPage({ english, spanish, french }) {
   if (locale === "fr") {
     return (
       <>
+        <Head>{renderMetaTags(french?.allPages[0]?.seo)}</Head>
         <Menu data={french?.menu} />
         <Slices
           slices={french?.allPages[0]?.contentBlocks}
@@ -47,6 +51,7 @@ export default function ContentPage({ english, spanish, french }) {
 
   return (
     <>
+      <Head>{renderMetaTags(english?.allPages[0]?.seo)}</Head>
       <Menu data={english?.menu} />
       <Slices
         slices={english?.allPages[0]?.contentBlocks}
@@ -88,6 +93,11 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "") {
   allPages(locale: en, filter: {slug: {eq: $slug}}) {
     slug
     title
+       seo: _seoMetaTags {
+      attributes
+      content
+      tag
+    }
     contentBlocks {
       ... on VideoRecord {
         _modelApiKey
@@ -193,6 +203,11 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "") {
   allPages(locale: es, filter: {slug: {eq: $slug}}) {
     slug
     title
+      seo:  _seoMetaTags {
+      attributes
+      content
+      tag
+    }
     contentBlocks {
       ... on VideoRecord {
         _modelApiKey
@@ -298,6 +313,11 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "") {
   allPages(locale: fr, filter: {slug: {eq: $slug}}) {
     slug
     title
+     seo:   _seoMetaTags {
+      attributes
+      content
+      tag
+    }
     contentBlocks {
       ... on VideoRecord {
         _modelApiKey

@@ -1,4 +1,6 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
+import { renderMetaTags } from "react-datocms";
 import { request } from "../lib/datocms";
 import Slices from "../components/pages/Slices";
 import Menu from "../components/Menu";
@@ -33,6 +35,7 @@ export default function AboutPage({ english, spanish, french }) {
   if (locale === "es") {
     return (
       <>
+        <Head>{renderMetaTags(spanish?.aboutPage?.seo)}</Head>
         <Menu data={spanish?.menu} />
         <AboutHeader>
           <h3>{spanish?.homePage?.presents}</h3>
@@ -53,6 +56,7 @@ export default function AboutPage({ english, spanish, french }) {
   if (locale === "fr") {
     return (
       <>
+        <Head>{renderMetaTags(french?.aboutPage?.seo)}</Head>
         <Menu data={french?.menu} />
         <AboutHeader>
           <h3>{french?.homePage?.presents}</h3>
@@ -70,6 +74,7 @@ export default function AboutPage({ english, spanish, french }) {
 
   return (
     <>
+      <Head>{renderMetaTags(english?.aboutPage?.seo)}</Head>
       <Menu data={english?.menu} />
       <AboutHeader>
         <h3>{english?.homePage?.presents}</h3>
@@ -105,6 +110,11 @@ query AboutQuery {
     sponsorMessage
   }
   aboutPage(locale: en) {
+                seo: _seoMetaTags {
+      tag
+      content
+      attributes
+    }
     title
     contentBlocks {
       ... on VideoRecord {
@@ -174,6 +184,11 @@ query AboutQuery {
     sponsorMessage
   }
   aboutPage(locale: es) {
+                seo: _seoMetaTags {
+      tag
+      content
+      attributes
+    }
     title
     contentBlocks {
       ... on VideoRecord {
@@ -243,6 +258,11 @@ query AboutQuery {
     sponsorMessage
   }
   aboutPage(locale: fr) {
+                seo: _seoMetaTags {
+      tag
+      content
+      attributes
+    }
     title
     contentBlocks {
       ... on VideoRecord {

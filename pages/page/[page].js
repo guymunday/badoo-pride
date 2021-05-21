@@ -1,4 +1,6 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
+import { renderMetaTags } from "react-datocms";
 import { request } from "../../lib/datocms";
 import HomepageContent from "../../components/HomepageContent";
 import Footer from "../../components/Footer";
@@ -11,6 +13,7 @@ export default function Home({ english, spanish, french }) {
   if (locale === "es") {
     return (
       <>
+        <Head>{renderMetaTags(spanish?.homePage?.seo)}</Head>
         <Menu data={spanish?.menu} />
         <HomepageContent data={spanish} />
         <Footer data={spanish?.footer} />
@@ -21,6 +24,7 @@ export default function Home({ english, spanish, french }) {
   if (locale === "fr") {
     return (
       <>
+        <Head>{renderMetaTags(french?.homePage?.seo)}</Head>
         <Menu data={french?.menu} />
         <HomepageContent data={french} />
         <Footer data={french?.footer} />
@@ -30,6 +34,7 @@ export default function Home({ english, spanish, french }) {
 
   return (
     <>
+      <Head>{renderMetaTags(english?.homePage?.seo)}</Head>
       <Menu data={english?.menu} />
       <HomepageContent data={english} />
       <Footer data={english?.footer} />
@@ -55,6 +60,11 @@ query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
   homePage(locale: en) {
     presents
     aLetterFrom
+            seo: _seoMetaTags {
+      tag
+      content
+      attributes
+    }
     contentBlocks {
       ... on LettersFromThumbnailRecord {
         _modelApiKey
@@ -140,6 +150,11 @@ query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
   homePage(locale: es) {
     presents
     aLetterFrom
+            seo: _seoMetaTags {
+      tag
+      content
+      attributes
+    }
     contentBlocks {
       ... on LettersFromThumbnailRecord {
         _modelApiKey
@@ -225,6 +240,11 @@ query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
   homePage(locale: fr) {
     presents
     aLetterFrom
+            seo: _seoMetaTags {
+      tag
+      content
+      attributes
+    }
     contentBlocks {
       ... on LettersFromThumbnailRecord {
         _modelApiKey

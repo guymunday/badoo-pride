@@ -1,4 +1,6 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
+import { renderMetaTags } from "react-datocms";
 import { request } from "../lib/datocms";
 import HomepageContent from "../components/HomepageContent";
 import Footer from "../components/Footer";
@@ -8,11 +10,10 @@ export default function Home({ english, spanish, french }) {
   const router = useRouter();
   const { locale } = router;
 
-  console.log(english);
-
   if (locale === "es") {
     return (
       <>
+        <Head>{renderMetaTags(spanish?.homePage?.seo)}</Head>
         <Menu data={spanish?.menu} />
         <HomepageContent data={spanish} />
         <Footer data={spanish?.footer} />
@@ -23,6 +24,7 @@ export default function Home({ english, spanish, french }) {
   if (locale === "fr") {
     return (
       <>
+        <Head>{renderMetaTags(french?.homePage?.seo)}</Head>
         <Menu data={french?.menu} />
         <HomepageContent data={french} />
         <Footer data={french?.footer} />
@@ -32,6 +34,7 @@ export default function Home({ english, spanish, french }) {
 
   return (
     <>
+      <Head>{renderMetaTags(english?.homePage?.seo)}</Head>
       <Menu data={english?.menu} />
       <HomepageContent data={english} />
       <Footer data={english?.footer} />
@@ -55,6 +58,12 @@ query HomePage($isBlank: BooleanType = "") {
     sponsorMessage
   }
   homePage(locale: en) {
+        seo: _seoMetaTags {
+      tag
+      content
+      attributes
+    }
+
     presents
     aLetterFrom
     contentBlocks {
@@ -140,6 +149,11 @@ query HomePage($isBlank: BooleanType = "") {
     sponsorMessage
   }  
   homePage(locale: es) {
+            seo: _seoMetaTags {
+      tag
+      content
+      attributes
+    }
     presents
     aLetterFrom
     contentBlocks {
@@ -225,6 +239,11 @@ query HomePage($isBlank: BooleanType = "") {
     sponsorMessage
   }
   homePage(locale: fr) {
+            seo: _seoMetaTags {
+      tag
+      content
+      attributes
+    }
     presents
     aLetterFrom
     contentBlocks {

@@ -10,8 +10,11 @@ const ImageWrapper = styled.div`
   }
   .gallery-grid-item {
     margin-bottom: 40px;
+    &:last-child {
+      margin-bottom: 0;
+    }
     @media screen and (max-width: 768px) {
-      margin-bottom: 10px;
+      margin-bottom: 30px;
     }
   }
 `;
