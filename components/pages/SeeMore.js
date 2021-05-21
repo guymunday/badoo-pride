@@ -65,7 +65,7 @@ export default function SeeMore({ data, letterFrom }) {
       scrollTrigger: {
         trigger: outerRef.current,
         start: "top center",
-        toggleActions: "play none none reverse",
+        toggleActions: "play none none none",
       },
     });
 

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Image } from "react-datocms";
+import FadeIn from "../FadeIn";
 
 const HeroStyles = styled.section`
   width: 100%;
@@ -19,11 +20,6 @@ const HeroStyles = styled.section`
     }
   }
   .hero-title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
     text-align: center;
     width: 100%;
     .title {
@@ -44,16 +40,39 @@ const HeroStyles = styled.section`
   }
 `;
 
+const HeroTitle = styled.div`
+  text-align: center;
+  width: 100%;
+  padding: 80px 10px 0 10px;
+  .title {
+    font-size: 6rem;
+    text-transform: uppercase;
+    line-height: 0.9;
+    @media screen and (max-width: 600px) {
+      font-size: 3rem;
+    }
+  }
+  .letter-from {
+    font-size: 3.7rem;
+    margin-bottom: 20px;
+    @media screen and (max-width: 600px) {
+      font-size: 2rem;
+    }
+  }
+`;
+
 export default function HeroSection({ image, subtitle, title }) {
   return (
     <>
       <HeroStyles>
         {image && <Image data={image} className="hero-image" />}
-        <div className="hero-title">
+      </HeroStyles>
+      <FadeIn>
+        <HeroTitle>
           <h3 className="letter-from">{subtitle}</h3>
           <h1 className="title">{title}</h1>
-        </div>
-      </HeroStyles>
+        </HeroTitle>
+      </FadeIn>
     </>
   );
 }
