@@ -60,7 +60,11 @@ export default function RainbowBackgroundFade({ children }) {
 
   return (
     <div
-      style={{ background: "#ff4d88", padding: 10, position: "relative" }}
+      style={{
+        background: "#ff4d88",
+        padding: 10,
+        position: "relative",
+      }}
       ref={ref}
     >
       {children}

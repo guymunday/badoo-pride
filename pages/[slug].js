@@ -3,6 +3,7 @@ import { request } from "../lib/datocms";
 import Slices from "../components/pages/Slices";
 import SeeMore from "../components/pages/SeeMore";
 import Footer from "../components/Footer";
+import Menu from "../components/Menu";
 
 export default function ContentPage({ english, spanish, french }) {
   const router = useRouter();
@@ -11,6 +12,7 @@ export default function ContentPage({ english, spanish, french }) {
   if (locale === "es") {
     return (
       <>
+        <Menu data={spanish?.menu} />
         <Slices
           slices={spanish?.allPages[0]?.contentBlocks}
           letterFrom={spanish?.homePage?.aLetterFrom}
@@ -28,6 +30,7 @@ export default function ContentPage({ english, spanish, french }) {
   if (locale === "fr") {
     return (
       <>
+        <Menu data={french?.menu} />
         <Slices
           slices={french?.allPages[0]?.contentBlocks}
           letterFrom={french?.homePage?.aLetterFrom}
@@ -44,6 +47,7 @@ export default function ContentPage({ english, spanish, french }) {
 
   return (
     <>
+      <Menu data={english?.menu} />
       <Slices
         slices={english?.allPages[0]?.contentBlocks}
         letterFrom={english?.homePage?.aLetterFrom}
@@ -68,6 +72,13 @@ query PagesQuery {
 
 const PAGE_QUERY_ENGLISH = `
 query PageQuery($slug: String!, $isBlank: BooleanType = "") {
+  menu(locale: en) {
+    aLetterFrom
+    menuItems {
+      title
+      slug
+    }
+  }
   footer: sponsorMessageFooter(locale: en) {
     termsLink
     privacyLink
@@ -166,6 +177,13 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "") {
 
 const PAGE_QUERY_SPANISH = `
 query PageQuery($slug: String!, $isBlank: BooleanType = "") {
+  menu(locale: es) {
+    aLetterFrom
+    menuItems {
+      title
+      slug
+    }
+  }
   footer: sponsorMessageFooter(locale: es) {
     termsLink
     privacyLink
@@ -264,6 +282,13 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "") {
 
 const PAGE_QUERY_FRENCH = `
 query PageQuery($slug: String!, $isBlank: BooleanType = "") {
+  menu(locale: fr) {
+    aLetterFrom
+    menuItems {
+      title
+      slug
+    }
+  }
   footer: sponsorMessageFooter(locale: fr) {
     termsLink
     privacyLink

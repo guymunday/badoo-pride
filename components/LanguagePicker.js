@@ -29,6 +29,20 @@ export default function LanguagePicker() {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
+    router.events.on("routeChangeStart", () => {
+      gsap.to(ref.current, {
+        opacity: 0,
+      });
+    });
+
+    router.events.on("routeChangeComplete", () => {
+      gsap.to(ref.current, {
+        opacity: 1,
+      });
+    });
+  }, []);
+
+  React.useEffect(() => {
     gsap.set(ref.current, {
       height: 30,
     });

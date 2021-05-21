@@ -50,7 +50,15 @@ export default function HeroSection({ video, image, subtitle, title }) {
       <HeroStyles>
         {image && !video && <Image data={image} className="hero-image" />}
         {video && (
-          <video className="hero-image" src={video} autoPlay muted loop />
+          <video
+            className="hero-image"
+            src={video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls={false}
+          />
         )}
         <div className="hero-title">
           <h3>{subtitle}</h3>

@@ -8,10 +8,12 @@ export default function Home({ english, spanish, french }) {
   const router = useRouter();
   const { locale } = router;
 
+  console.log(english);
+
   if (locale === "es") {
     return (
       <>
-        <Menu />
+        <Menu data={spanish?.menu} />
         <HomepageContent data={spanish} />
         <Footer data={spanish?.footer} />
       </>
@@ -21,7 +23,7 @@ export default function Home({ english, spanish, french }) {
   if (locale === "fr") {
     return (
       <>
-        <Menu />
+        <Menu data={french?.menu} />
         <HomepageContent data={french} />
         <Footer data={french?.footer} />
       </>
@@ -30,7 +32,7 @@ export default function Home({ english, spanish, french }) {
 
   return (
     <>
-      <Menu />
+      <Menu data={english?.menu} />
       <HomepageContent data={english} />
       <Footer data={english?.footer} />
     </>
@@ -40,6 +42,7 @@ export default function Home({ english, spanish, french }) {
 const HOMEPAGE_QUERY_ENGLISH = `
 query HomePage($isBlank: BooleanType = "") {
   menu(locale: en) {
+    aLetterFrom
     menuItems {
       title
       slug
@@ -123,7 +126,8 @@ query HomePage($isBlank: BooleanType = "") {
 
 const HOMEPAGE_QUERY_SPANISH = `
 query HomePage($isBlank: BooleanType = "") {
-  menu(locale: en) {
+  menu(locale: es) {
+    aLetterFrom
     menuItems {
       title
       slug
@@ -207,7 +211,8 @@ query HomePage($isBlank: BooleanType = "") {
 
 const HOMEPAGE_QUERY_FRENCH = `
 query HomePage($isBlank: BooleanType = "") {
-  menu(locale: en) {
+  menu(locale: fr) {
+    aLetterFrom
     menuItems {
       title
       slug

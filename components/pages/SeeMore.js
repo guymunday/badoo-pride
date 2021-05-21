@@ -70,7 +70,6 @@ export default function SeeMore({ data, letterFrom }) {
       </SeeMoreHeader>
       <SeeMoreStyles>
         {data?.map((t, i) => {
-          console.log(t?.contentBlocks[0].heroImage?.responsiveImage);
           return (
             <>
               <div

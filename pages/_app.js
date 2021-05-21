@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useRouter } from "next/router";
+import { createGlobalStyle } from "styled-components";
 
 import Layout from "../components/Layout";
-import { createGlobalStyle } from "styled-components";
 
 import "../styles/fonts.css";
 import reset from "../styles/reset";

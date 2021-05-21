@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { Image } from "react-datocms";
@@ -78,9 +79,8 @@ export default function Thumbnails({ data, aLetterFrom }) {
       <ThumbnailGrid id="thumbnails">
         {data?.map((t, i) => {
           return (
-            <>
+            <React.Fragment key={i}>
               <div
-                key={i}
                 className="thumbnail-inner"
                 onClick={() => router.push(`/${t?.slug}`)}
                 role="button"
@@ -94,7 +94,7 @@ export default function Thumbnails({ data, aLetterFrom }) {
                   {t?.title}
                 </h1>
               </div>
-            </>
+            </React.Fragment>
           );
         })}
       </ThumbnailGrid>

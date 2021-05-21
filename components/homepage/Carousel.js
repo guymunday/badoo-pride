@@ -106,13 +106,11 @@ export default function Carousel({ data }) {
   };
 
   const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 150) {
-      // do your stuff here for left swipe
+    if (touchStart - touchEnd > 50) {
       handlePreviousButton();
     }
 
-    if (touchStart - touchEnd < -150) {
-      // do your stuff here for right swipe
+    if (touchStart - touchEnd < -50) {
       handleNextButton();
     }
   };
@@ -138,13 +136,12 @@ export default function Carousel({ data }) {
 
           {data?.video?.videos.map((v, i) => {
             return (
-              <>
+              <React.Fragment key={v?.videoUrl?.providerUid}>
                 {slides === i && (
                   <>
                     {v?.videoUrl?.url.includes("youtu") && (
                       <div className="iframe-container">
                         <iframe
-                          key={i}
                           title={v?.videoUrl?.title}
                           src={`https://www.youtube.com/embed/${v?.videoUrl?.providerUid}`}
                           frameBorder="0"
@@ -156,7 +153,6 @@ export default function Carousel({ data }) {
                     {v?.videoUrl?.url.includes("vimeo") && (
                       <div className="iframe-container">
                         <iframe
-                          key={i}
                           title={v?.videoUrl?.title}
                           src={`https://player.vimeo.com/video/${v?.videoUrl?.providerUid}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
                           frameBorder="0"
@@ -167,7 +163,7 @@ export default function Carousel({ data }) {
                     )}
                   </>
                 )}
-              </>
+              </React.Fragment>
             );
           })}
 
@@ -187,6 +183,7 @@ export default function Carousel({ data }) {
           <div className="carousel-number-buttons">
             {data?.video?.videos.map((b, i) => (
               <button
+                key={`c-button-${i}`}
                 onClick={() => setSlides(i)}
                 style={{ color: slides === i ? "var(--colour-6)" : "" }}
               >

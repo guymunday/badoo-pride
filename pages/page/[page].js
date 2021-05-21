@@ -2,16 +2,16 @@ import { useRouter } from "next/router";
 import { request } from "../../lib/datocms";
 import HomepageContent from "../../components/HomepageContent";
 import Footer from "../../components/Footer";
+import Menu from "../../components/Menu";
 
 export default function Home({ english, spanish, french }) {
   const router = useRouter();
   const { locale } = router;
 
-  console.log(english);
-
   if (locale === "es") {
     return (
       <>
+        <Menu data={spansish?.menu} />
         <HomepageContent data={spanish} />
         <Footer data={spanish?.footer} />
       </>
@@ -21,6 +21,7 @@ export default function Home({ english, spanish, french }) {
   if (locale === "fr") {
     return (
       <>
+        <Menu data={french?.menu} />
         <HomepageContent data={french} />
         <Footer data={french?.footer} />
       </>
@@ -29,6 +30,7 @@ export default function Home({ english, spanish, french }) {
 
   return (
     <>
+      <Menu data={english?.menu} />
       <HomepageContent data={english} />
       <Footer data={english?.footer} />
     </>
@@ -37,6 +39,13 @@ export default function Home({ english, spanish, french }) {
 
 const HOMEPAGE_QUERY_ENGLISH = `
 query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
+  menu(locale: en) {
+    aLetterFrom
+    menuItems {
+      title
+      slug
+    }
+  }
   footer: sponsorMessageFooter(locale: en) {
     termsLink
     privacyLink
@@ -115,6 +124,13 @@ query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
 
 const HOMEPAGE_QUERY_SPANISH = `
 query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
+  menu(locale: es) {
+    aLetterFrom
+    menuItems {
+      title
+      slug
+    }
+  }
   footer: sponsorMessageFooter(locale: es) {
     termsLink
     privacyLink
@@ -193,6 +209,13 @@ query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
 
 const HOMEPAGE_QUERY_FRENCH = `
 query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
+  menu(locale: fr) {
+    aLetterFrom
+    menuItems {
+      title
+      slug
+    }
+  }
   footer: sponsorMessageFooter(locale: fr) {
     termsLink
     privacyLink

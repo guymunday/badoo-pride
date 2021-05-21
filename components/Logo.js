@@ -10,6 +10,9 @@ const LogoStyles = styled.div`
   transform: translate(-50%, 0);
   cursor: pointer;
   padding: 30px;
+  img {
+    object-fit: fill;
+  }
 `;
 
 export default function Logo() {
