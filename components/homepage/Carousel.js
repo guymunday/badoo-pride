@@ -76,6 +76,9 @@ const CarouselStyles = styled.div`
 
 export default function Carousel({ data }) {
   const [slides, setSlides] = React.useState(0);
+  const [touchStart, setTouchStart] = React.useState(0);
+  const [touchEnd, setTouchEnd] = React.useState(0);
+
   const router = useRouter();
   const { locale } = router;
 
@@ -94,11 +97,35 @@ export default function Carousel({ data }) {
     setSlides(slides === 0 ? data?.video?.videos.length - 1 : slides - 1);
   };
 
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 150) {
+      // do your stuff here for left swipe
+      handlePreviousButton();
+    }
+
+    if (touchStart - touchEnd < -150) {
+      // do your stuff here for right swipe
+      handleNextButton();
+    }
+  };
+
   return (
     <>
       <div style={{ margin: "30px 0" }}>
         <Title>{data?.video?.title}</Title>
-        <CarouselStyles>
+        <CarouselStyles
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <button className="carousel-button" onClick={handlePreviousButton}>
             <span>
               {locale === "es"
