@@ -20,6 +20,7 @@ export default function Layout({ children }) {
     router.events.on("routeChangeComplete", () => {
       gsap.to(mainRef.current, {
         opacity: 1,
+        delay: 0.5,
       });
     });
   }, []);

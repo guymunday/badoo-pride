@@ -38,6 +38,7 @@ export default function LanguagePicker() {
     router.events.on("routeChangeComplete", () => {
       gsap.to(ref.current, {
         opacity: 1,
+        delay: 0.5,
       });
     });
   }, []);

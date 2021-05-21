@@ -20,10 +20,12 @@ export default function SanitisedHtml({ center, html, ...rest }) {
       "li",
       "br",
       "iframe",
+      "img",
     ],
     allowedAttributes: {
       a: ["href", "name", "target", "class", "rel"],
       iframe: ["width", "height", "src"],
+      img: ["src", "alt", "title"],
     },
     transformTags: {
       a: sanitizeHtml.simpleTransform("a", {
