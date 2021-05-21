@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import FadeIn from "./FadeIn";
 import SanitisedHtml from "./SanitisedHtml";
 
 const SponsorMessage = styled.div`
@@ -45,9 +46,11 @@ export default function Footer({ data }) {
 
   return (
     <>
-      <SponsorMessage>
-        <SanitisedHtml center html={data?.sponsorMessage} />
-      </SponsorMessage>
+      <FadeIn>
+        <SponsorMessage>
+          <SanitisedHtml center html={data?.sponsorMessage} />
+        </SponsorMessage>
+      </FadeIn>
       <FooterStyles>
         <div className="footer-line" />
         <div className="footer-inner">

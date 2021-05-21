@@ -1,18 +1,29 @@
 import WordBlock from "./WordBlock";
 import Carousel from "./Carousel";
 import Thumbnails from "./Thumbnails";
+import FadeIn from "../FadeIn";
 
 export default function Slices({ slices, thumbnails, aLetterFrom }) {
   const slice = slices.map((s, i) => {
     switch (s._modelApiKey) {
       case "word_block":
-        return <WordBlock key={i} data={s} />;
+        return (
+          <FadeIn key={i}>
+            <WordBlock data={s} />
+          </FadeIn>
+        );
       case "letters_from_thumbnail":
         return (
-          <Thumbnails key={i} data={thumbnails} aLetterFrom={aLetterFrom} />
+          <FadeIn key={i}>
+            <Thumbnails data={thumbnails} aLetterFrom={aLetterFrom} />
+          </FadeIn>
         );
       case "featured_video_collection":
-        return <Carousel key={i} data={s} />;
+        return (
+          <FadeIn key={i}>
+            <Carousel data={s} />
+          </FadeIn>
+        );
       default:
         return null;
     }

@@ -1,7 +1,12 @@
+import * as React from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { Image } from "react-datocms";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import eyesIcon from "../../assets/icons/eyes-icon.svg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SeeMoreHeader = styled.div`
   display: flex;
@@ -50,14 +55,33 @@ const SeeMoreStyles = styled.div`
 `;
 
 export default function SeeMore({ data, letterFrom }) {
+  const outerRef = React.useRef(null);
+
   const router = useRouter();
   const { locale } = router;
+
+  React.useEffect(() => {
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: outerRef.current,
+        start: "top center",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    tl.from(".see-more-inner", {
+      opacity: 0,
+      y: 100,
+      stagger: 0.2,
+    });
+  }, []);
 
   return (
     <>
       <SeeMoreHeader
         onClick={() => router.push(`/page/1#thumbnails`)}
         role="button"
+        ref={outerRef}
       >
         <h2>
           {locale === "es"

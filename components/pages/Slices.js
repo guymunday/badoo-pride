@@ -3,11 +3,10 @@ import MasonryGallery from "./MasonryGallery";
 import HeroSection from "./HeroSection";
 import Video from "./Video";
 import FullwidthGallery from "./FullwidthGallery";
+import FadeIn from "../FadeIn";
 
 export default function Slices({ slices, letterFrom, title }) {
   const slice = slices.map((s, i) => {
-    console.log(s);
-
     switch (s._modelApiKey) {
       case "hero_section":
         return (
@@ -19,13 +18,29 @@ export default function Slices({ slices, letterFrom, title }) {
           />
         );
       case "video":
-        return <Video key={i} video={s?.video} />;
+        return (
+          <FadeIn key={i}>
+            <Video video={s?.video} />
+          </FadeIn>
+        );
       case "copy":
-        return <Copy key={i} copy={s?.copy} />;
+        return (
+          <FadeIn key={i}>
+            <Copy copy={s?.copy} />
+          </FadeIn>
+        );
       case "gallery":
-        return <MasonryGallery key={i} images={s?.gallery} />;
+        return (
+          <FadeIn key={i}>
+            <MasonryGallery key={i} images={s?.gallery} />
+          </FadeIn>
+        );
       case "full_width_gallery":
-        return <FullwidthGallery key={i} images={s?.gallery} />;
+        return (
+          <FadeIn key={i}>
+            <FullwidthGallery key={i} images={s?.gallery} />
+          </FadeIn>
+        );
       default:
         return null;
     }
