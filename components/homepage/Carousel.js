@@ -3,6 +3,7 @@ import styled from "styled-components";
 import heartIcon from "../../assets/icons/heart-icon.svg";
 import { gsap } from "gsap";
 import { useRouter } from "next/router";
+import rightArrow from "../../assets/icons/arrow.svg";
 
 const Title = styled.h2`
   text-align: center;
@@ -38,6 +39,20 @@ const CarouselStyles = styled.div`
           object-fit: fill;
         }
       }
+    }
+  }
+
+  .mobile-arrows {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 25px;
+    .left-arrow {
+      transform: rotate(180deg);
+    }
+    @media screen and (min-width: 768px) {
+      display: none;
     }
   }
 
@@ -198,6 +213,15 @@ export default function Carousel({ data }) {
                 )}
               </button>
             ))}
+          </div>
+
+          <div className="mobile-arrows">
+            <button onClick={handlePreviousButton}>
+              <img className="left-arrow" src={rightArrow} />
+            </button>
+            <button onClick={handleNextButton}>
+              <img src={rightArrow} />
+            </button>
           </div>
         </CarouselStyles>
       </div>
