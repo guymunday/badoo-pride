@@ -2,7 +2,7 @@ import { css } from "styled-components";
 
 const globalCss = css`
   :root {
-    --colour-1: ##ff4d88;
+    --colour-1: #ff4d88;
     --colour-2: #fc846d;
     --colour-3: #ffa34e;
     --colour-4: #04a39c;
