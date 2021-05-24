@@ -11,6 +11,7 @@ const LanguagePickerContainer = styled.div`
   flex-direction: column;
   overflow: hidden;
   color: var(--white);
+  height: 30px;
   @media screen and (max-width: 320px) {
     padding: 20px 20px 30px 20px;
   }
@@ -45,12 +46,6 @@ export default function LanguagePicker() {
         opacity: 1,
         delay: 0.5,
       });
-    });
-  }, []);
-
-  React.useEffect(() => {
-    gsap.set(ref.current, {
-      height: 30,
     });
   }, []);
 
