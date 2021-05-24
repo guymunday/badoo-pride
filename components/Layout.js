@@ -2,7 +2,6 @@ import * as React from "react";
 import { useRouter } from "next/router";
 import { gsap } from "gsap";
 import LanguagePicker from "./LanguagePicker";
-// import RainbowBackground from "./RainbowBackground";
 import RainbowBackgroundFade from "./RainbowBackgroundFade";
 import Logo from "./Logo";
 
