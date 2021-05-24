@@ -216,14 +216,14 @@ export default function Carousel({ data }) {
             ))}
           </div>
 
-          <div className="mobile-arrows">
+          {/* <div className="mobile-arrows">
             <button onClick={handlePreviousButton}>
               <img className="left-arrow" src={rightArrow} />
             </button>
             <button onClick={handleNextButton}>
               <img src={rightArrow} />
             </button>
-          </div>
+          </div> */}
         </CarouselStyles>
       </div>
     </>
