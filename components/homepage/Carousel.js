@@ -49,6 +49,10 @@ const CarouselStyles = styled.div`
     position: absolute;
     bottom: 25px;
     z-index: 80;
+    pointer-events: none;
+    button {
+      pointer-events: all;
+    }
     .left-arrow {
       transform: rotate(180deg);
     }
