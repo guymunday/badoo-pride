@@ -94,10 +94,12 @@ export default function Thumbnails({ data, aLetterFrom }) {
                 onClick={() => router.push(`/${t?.slug}`)}
                 role="button"
               >
-                <Image
-                  data={t?.contentBlocks[0]?.heroImage?.responsiveImage}
-                  className="thumbnail-image"
-                />
+                {t?.contentBlocks[0]?.heroImage?.responsiveImage && (
+                  <Image
+                    data={t?.contentBlocks[0]?.heroImage?.responsiveImage}
+                    className="thumbnail-image"
+                  />
+                )}
                 <p>{aLetterFrom}</p>
                 <h1 style={{ textTransform: "uppercase", lineHeight: 1.1 }}>
                   {t?.title}

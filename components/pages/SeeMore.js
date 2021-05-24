@@ -78,41 +78,47 @@ export default function SeeMore({ data, letterFrom }) {
 
   return (
     <>
-      <SeeMoreHeader
-        onClick={() => router.push(`/page/1#thumbnails`)}
-        role="button"
-        ref={outerRef}
-      >
-        <h2>
-          {locale === "es"
-            ? "Ver más"
-            : locale === "fr"
-            ? "Afficher plus"
-            : "See more"}
-        </h2>{" "}
-        <img src={eyesIcon} alt="eyes icon" />
-      </SeeMoreHeader>
-      <SeeMoreStyles>
-        {data?.map((t, i) => {
-          return (
-            <>
-              <div
-                key={i}
-                className="see-more-inner"
-                onClick={() => router.push(`/${t?.slug}`)}
-                role="button"
-              >
-                <Image
-                  data={t?.contentBlocks[0]?.heroImage?.responsiveImage}
-                  className="see-more-image"
-                />
-                <p>{letterFrom}</p>
-                <h1>{t?.title}</h1>
-              </div>
-            </>
-          );
-        })}
-      </SeeMoreStyles>
+      {data.length > 0 && (
+        <>
+          <SeeMoreHeader
+            onClick={() => router.push(`/page/1#thumbnails`)}
+            role="button"
+            ref={outerRef}
+          >
+            <h2>
+              {locale === "es"
+                ? "Ver más"
+                : locale === "fr"
+                ? "Afficher plus"
+                : "See more"}
+            </h2>{" "}
+            <img src={eyesIcon} alt="eyes icon" />
+          </SeeMoreHeader>
+          <SeeMoreStyles>
+            {data?.map((t, i) => {
+              return (
+                <>
+                  <div
+                    key={i}
+                    className="see-more-inner"
+                    onClick={() => router.push(`/${t?.slug}`)}
+                    role="button"
+                  >
+                    {t?.contentBlocks[0]?.heroImage?.responsiveImage && (
+                      <Image
+                        data={t?.contentBlocks[0]?.heroImage?.responsiveImage}
+                        className="see-more-image"
+                      />
+                    )}
+                    <p>{letterFrom}</p>
+                    <h1>{t?.title}</h1>
+                  </div>
+                </>
+              );
+            })}
+          </SeeMoreStyles>
+        </>
+      )}
     </>
   );
 }
