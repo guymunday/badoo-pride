@@ -21,6 +21,7 @@ export default function SanitisedHtml({ center, html, ...rest }) {
       "br",
       "iframe",
       "img",
+      "blockquote",
     ],
     allowedAttributes: {
       a: ["href", "name", "target", "class", "rel"],

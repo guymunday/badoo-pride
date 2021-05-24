@@ -109,7 +109,7 @@ query HomePage($isBlank: BooleanType = "") {
       }
     }
   }
-  allPages(locale: en, filter: {title: {isBlank: $isBlank}}, first: 8) {
+  allPages(orderBy: order_ASC, locale: en, filter: {title: {isBlank: $isBlank}}, first: 8) {
     id
     slug
     title
@@ -199,7 +199,7 @@ query HomePage($isBlank: BooleanType = "") {
       }
     }
   }
-  allPages(locale: es, filter: {title: {isBlank: $isBlank}}, first: 8) {
+  allPages(orderBy: order_ASC,locale: es, filter: {title: {isBlank: $isBlank}}, first: 8) {
     id
     slug
     title
@@ -289,7 +289,7 @@ query HomePage($isBlank: BooleanType = "") {
       }
     }
   }
-  allPages(locale: fr, filter: {title: {isBlank: $isBlank}}, first: 8) {
+  allPages(orderBy: order_ASC,locale: fr, filter: {title: {isBlank: $isBlank}}, first: 8) {
     id
     slug
     title

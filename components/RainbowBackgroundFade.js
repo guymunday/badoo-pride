@@ -11,21 +11,28 @@ export default function RainbowBackgroundFade({ children }) {
       duration: 2,
       delay: 2,
       css: {
-        background: "#fc846d",
+        background: "#FF4D88",
       },
     })
       .to(ref.current, {
         duration: 2,
         delay: 2,
         css: {
-          background: "#ffa34e",
+          background: "#04A39C",
         },
       })
       .to(ref.current, {
         duration: 2,
         delay: 2,
         css: {
-          background: "#04a39c",
+          background: "#FFA34E",
+        },
+      })
+      .to(ref.current, {
+        duration: 2,
+        delay: 2,
+        css: {
+          background: "#FC846D",
         },
       })
       .to(ref.current, {
@@ -39,13 +46,6 @@ export default function RainbowBackgroundFade({ children }) {
         duration: 2,
         delay: 2,
         css: {
-          background: "#6e3eff",
-        },
-      })
-      .to(ref.current, {
-        duration: 2,
-        delay: 2,
-        css: {
           background: "#370f7b",
         },
       })
@@ -53,7 +53,7 @@ export default function RainbowBackgroundFade({ children }) {
         duration: 2,
         delay: 2,
         css: {
-          background: "#FF4D88",
+          background: "#6E3EFF",
         },
       });
   }, []);
@@ -61,7 +61,7 @@ export default function RainbowBackgroundFade({ children }) {
   return (
     <div
       style={{
-        background: "#FF4D88",
+        background: "#6E3EFF",
         padding: 10,
         position: "relative",
       }}

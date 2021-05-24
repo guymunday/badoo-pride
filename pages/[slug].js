@@ -161,7 +161,7 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "") {
   homePage(locale: en) {
     aLetterFrom
   }
-  seeMore: allPages(locale: en, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
+  seeMore: allPages(orderBy: order_ASC,locale: en, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
     id
     slug
     title
@@ -271,7 +271,7 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "") {
   homePage(locale: es) {
     aLetterFrom
   }
-  seeMore: allPages(locale: es, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
+  seeMore: allPages(orderBy: order_ASC,locale: es, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
     id
     slug
     title
@@ -381,7 +381,7 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "") {
   homePage(locale: fr) {
     aLetterFrom
   }
-  seeMore: allPages(locale: fr, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
+  seeMore: allPages(orderBy: order_ASC,locale: fr, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
     id
     slug
     title

@@ -129,7 +129,7 @@ const globalCss = css`
     bottom: 0;
     left: 0;
     width: 100%;
-    background: var(--colour-1);
+    background: var(--colour-6);
     padding: 10px;
     font-size: 0.8rem;
     display: flex;
@@ -167,10 +167,17 @@ const globalCss = css`
 
   #rcc-confirm-button {
     background: #fff;
-    color: var(--colour-1);
+    color: var(--colour-6);
     padding: 5px;
     border-radius: 5px;
     margin: 0 10px;
+  }
+
+  blockquote {
+    text-align: center;
+    font-family: "Windsor", sans-serif;
+    font-weight: 700;
+    font-size: 2rem !important;
   }
 `;
 
