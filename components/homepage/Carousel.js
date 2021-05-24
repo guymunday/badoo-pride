@@ -48,6 +48,7 @@ const CarouselStyles = styled.div`
     justify-content: space-between;
     position: absolute;
     bottom: 25px;
+    z-index: 80;
     .left-arrow {
       transform: rotate(180deg);
     }
