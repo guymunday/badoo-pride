@@ -95,8 +95,8 @@ const CarouselStyles = styled.div`
 
 export default function Carousel({ data }) {
   const [slides, setSlides] = React.useState(0);
-  const [touchStart, setTouchStart] = React.useState(0);
-  const [touchEnd, setTouchEnd] = React.useState(0);
+  // const [touchStart, setTouchStart] = React.useState(0);
+  // const [touchEnd, setTouchEnd] = React.useState(0);
 
   const router = useRouter();
   const { locale } = router;
@@ -116,33 +116,29 @@ export default function Carousel({ data }) {
     setSlides(slides === 0 ? data?.video?.videos.length - 1 : slides - 1);
   };
 
-  const handleTouchStart = (e) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
+  // const handleTouchStart = (e) => {
+  //   setTouchStart(e.targetTouches[0].clientX);
+  // };
 
-  const handleTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
+  // const handleTouchMove = (e) => {
+  //   setTouchEnd(e.targetTouches[0].clientX);
+  // };
 
-  const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 50) {
-      handlePreviousButton();
-    }
+  // const handleTouchEnd = () => {
+  //   if (touchStart - touchEnd > 50) {
+  //     handlePreviousButton();
+  //   }
 
-    if (touchStart - touchEnd < -50) {
-      handleNextButton();
-    }
-  };
+  //   if (touchStart - touchEnd < -50) {
+  //     handleNextButton();
+  //   }
+  // };
 
   return (
     <>
       <div style={{ margin: "30px 0" }}>
         <Title>{data?.video?.title}</Title>
-        <CarouselStyles
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
+        <CarouselStyles>
           <button className="carousel-button" onClick={handlePreviousButton}>
             <span>
               {locale === "es"
@@ -216,14 +212,14 @@ export default function Carousel({ data }) {
             ))}
           </div>
 
-          {/* <div className="mobile-arrows">
+          <div className="mobile-arrows">
             <button onClick={handlePreviousButton}>
               <img className="left-arrow" src={rightArrow} />
             </button>
             <button onClick={handleNextButton}>
               <img src={rightArrow} />
             </button>
-          </div> */}
+          </div>
         </CarouselStyles>
       </div>
     </>
