@@ -25,6 +25,27 @@ export default function Layout({ children }) {
     });
   }, []);
 
+  // const handleScolled = () => {
+  //   let lastScroll = 0;
+
+  //   window.addEventListener("scroll", () => {
+  //     const currentScroll = window.pageYOffset;
+
+  //     if (currentScroll <= 200) {
+  //       setScroll(false);
+  //       return;
+  //     }
+
+  //     if (currentScroll > lastScroll) {
+  //       setScroll(true);
+  //     } else if (currentScroll < lastScroll) {
+  //       setScroll(false);
+  //     }
+
+  //     lastScroll = currentScroll;
+  //   });
+  // };
+
   return (
     <>
       <RainbowBackgroundFade>

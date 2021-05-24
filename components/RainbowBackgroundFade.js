@@ -53,7 +53,7 @@ export default function RainbowBackgroundFade({ children }) {
         duration: 2,
         delay: 2,
         css: {
-          background: "#ff4d88",
+          background: "#ffbbd0",
         },
       });
   }, []);
@@ -61,7 +61,7 @@ export default function RainbowBackgroundFade({ children }) {
   return (
     <div
       style={{
-        background: "#ff4d88",
+        background: "#ffbbd0",
         padding: 10,
         position: "relative",
       }}

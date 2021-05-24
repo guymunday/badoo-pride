@@ -42,7 +42,7 @@ export default function ContentPage({ english, spanish, french }) {
         />
         <SeeMore
           data={french?.seeMore}
-          letterFrom={spanish?.homePage?.aLetterFrom}
+          letterFrom={french?.homePage?.aLetterFrom}
         />
         <Footer data={french?.footer} />
       </>
@@ -60,7 +60,7 @@ export default function ContentPage({ english, spanish, french }) {
       />
       <SeeMore
         data={english?.seeMore}
-        letterFrom={spanish?.homePage?.aLetterFrom}
+        letterFrom={english?.homePage?.aLetterFrom}
       />
       <Footer data={english?.footer} />
     </>

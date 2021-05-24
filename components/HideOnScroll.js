@@ -1,27 +1,13 @@
 import * as React from "react";
-import Link from "next/link";
 import styled from "styled-components";
-import logoSvg from "../assets/badoo-logo.svg";
-import _ from "lodash";
 
-const LogoStyles = styled.div`
+const HideContainer = styled.div`
   position: fixed;
-  top: 0;
-  left: 50%;
   z-index: 99;
-  transform: translate(-50%, 0);
-  cursor: pointer;
-  padding: 30px;
-  @media screen and (max-width: 320px) {
-    padding: 40px;
-  }
-  img {
-    object-fit: fill;
-  }
+  transition: 0.3 ease;
 `;
 
-export default function Logo() {
-  const logoRef = React.useRef(null);
+export default function HideOnScroll({ left, right, children }) {
   const [scroll, setScroll] = React.useState(false);
 
   const handleScolled = () => {
@@ -51,11 +37,9 @@ export default function Logo() {
 
   return (
     <>
-      <LogoStyles style={{ top: scroll ? -100 : 0 }} ref={logoRef}>
-        <Link href="/">
-          <img src={logoSvg} alt="Badoo logo" />
-        </Link>
-      </LogoStyles>
+      <HideContainer style={{ top: scroll ? -100 : 0, left, right }}>
+        {children}
+      </HideContainer>
     </>
   );
 }

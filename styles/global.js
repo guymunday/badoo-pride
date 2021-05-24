@@ -2,7 +2,7 @@ import { css } from "styled-components";
 
 const globalCss = css`
   :root {
-    --colour-1: #ff4d88;
+    --colour-1: #ffbbd0;
     --colour-2: #fc846d;
     --colour-3: #ffa34e;
     --colour-4: #04a39c;
@@ -171,6 +171,28 @@ const globalCss = css`
     padding: 5px;
     border-radius: 5px;
     margin: 0 10px;
+  }
+
+  .headroom {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+  .headroom--unfixed {
+    position: fixed;
+    transform: translateY(0);
+  }
+  .headroom--scrolled {
+    transition: transform 200ms ease-in-out;
+  }
+  .headroom--unpinned {
+    position: fixed;
+    transform: translateY(-100%);
+  }
+  .headroom--pinned {
+    position: fixed;
+    transform: translateY(0%);
   }
 `;
 

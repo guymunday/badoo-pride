@@ -62,11 +62,20 @@ const Pagination = styled.div`
   justify-content: space-between;
   max-width: 1200px;
   margin: -50px auto 100px auto;
+  @media screen and (max-width: 600px) {
+    justify-content: space-around;
+  }
   .pagination-link {
     cursor: pointer;
     .left-arrow {
       transform: rotate(180deg);
     }
+  }
+`;
+
+const Spacer = styled.div`
+  @media screen and (max-width: 600px) {
+    display: none;
   }
 `;
 
@@ -109,7 +118,11 @@ export default function Thumbnails({ data, aLetterFrom }) {
                 )
               }
             >
-              <img className="left-arrow" src={rightArrow} alt="eyes icon" />{" "}
+              <img
+                className="left-arrow"
+                src={rightArrow}
+                alt="left arrow icon"
+              />{" "}
               {locale === "es"
                 ? "Anterior"
                 : locale === "fr"
@@ -117,7 +130,7 @@ export default function Thumbnails({ data, aLetterFrom }) {
                 : "Previous"}
             </div>
           )}
-          <div />
+          <Spacer />
           {data.length > 7 && (
             <div
               className="pagination-link"
@@ -127,7 +140,7 @@ export default function Thumbnails({ data, aLetterFrom }) {
                 )
               }
             >
-              <img src={eyesIcon} alt="eyes icon" />{" "}
+              <img src={eyesIcon} style={{ maxWidth: 40 }} alt="eyes icon" />{" "}
               {locale === "es"
                 ? "Siguiente"
                 : locale === "fr"
@@ -140,13 +153,13 @@ export default function Thumbnails({ data, aLetterFrom }) {
       )}
       {router.asPath === "/" && (
         <Pagination>
-          <div />
+          <Spacer />
           {data.length > 7 && (
             <div
               className="pagination-link"
               onClick={() => router.push(`/page/2#thumbnails`)}
             >
-              <img src={eyesIcon} alt="eyes icon" />{" "}
+              <img style={{ maxWidth: 40 }} src={eyesIcon} alt="eyes icon" />{" "}
               {locale === "es"
                 ? "Siguiente"
                 : locale === "fr"

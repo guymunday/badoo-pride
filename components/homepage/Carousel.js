@@ -34,6 +34,9 @@ const CarouselStyles = styled.div`
     &.carousel-button-next {
       span {
         transform: rotate(90deg);
+        img {
+          object-fit: fill;
+        }
       }
     }
   }

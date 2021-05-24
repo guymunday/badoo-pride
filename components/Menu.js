@@ -3,12 +3,9 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { gsap } from "gsap";
 import RainbowBackgroundFade from "./RainbowBackgroundFade";
+import HideOnScroll from "./HideOnScroll";
 
 const Hamburger = styled.button`
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 99;
   padding: 30px;
   font-size: 20px;
   @media screen and (max-width: 320px) {
@@ -96,25 +93,31 @@ export default function Menu({ data }) {
 
   return (
     <>
-      <Hamburger onClick={handleMenuOpen}>
-        <svg
-          className="hamburger-icon"
-          viewBox="0 0 100 80"
-          width="25"
-          height="25"
-        >
-          {!menuOpen && <rect width="100" height="10"></rect>}
-          <rect y="30" width="100" height="10"></rect>
-          {!menuOpen && <rect y="60" width="100" height="10"></rect>}
-        </svg>
-        {menuOpen ? (
-          <>
-            {locale === "es" ? "Cerrar" : locale === "fr" ? "Fermer" : "Close"}
-          </>
-        ) : (
-          <>{locale === "es" ? "Menú" : "Menu"}</>
-        )}
-      </Hamburger>
+      <HideOnScroll right={0}>
+        <Hamburger onClick={handleMenuOpen}>
+          <svg
+            className="hamburger-icon"
+            viewBox="0 0 100 80"
+            width="25"
+            height="25"
+          >
+            {!menuOpen && <rect width="100" height="10"></rect>}
+            <rect y="30" width="100" height="10"></rect>
+            {!menuOpen && <rect y="60" width="100" height="10"></rect>}
+          </svg>
+          {menuOpen ? (
+            <>
+              {locale === "es"
+                ? "Cerrar"
+                : locale === "fr"
+                ? "Fermer"
+                : "Close"}
+            </>
+          ) : (
+            <>{locale === "es" ? "Menú" : "Menu"}</>
+          )}
+        </Hamburger>
+      </HideOnScroll>
       {menuOpen && (
         <Navigation ref={menuRef}>
           <RainbowBackgroundFade>
