@@ -42,22 +42,22 @@ export default function Home({ english, spanish, french }) {
   );
 }
 
-const HOMEPAGE_QUERY_ENGLISH = `
-query HomePage($isBlank: BooleanType = "") {
-  menu(locale: en) {
+const HOMEPAGE_QUERY = `
+query HomePage($isBlank: BooleanType = "", $locale: SiteLocale) {
+  menu(locale: $locale) {
     aLetterFrom
     menuItems {
       title
       slug
     }
   }
-  footer: sponsorMessageFooter(locale: en) {
+  footer: sponsorMessageFooter(locale: $locale) {
     termsLink
     privacyLink
     cookiesLink
     sponsorMessage
   }
-  homePage(locale: en) {
+  homePage(locale: $locale) {
         seo: _seoMetaTags {
       tag
       content
@@ -109,187 +109,7 @@ query HomePage($isBlank: BooleanType = "") {
       }
     }
   }
-  allPages(orderBy: order_ASC, locale: en, filter: {title: {isBlank: $isBlank}}, first: 8) {
-    id
-    slug
-    title
-    contentBlocks {
-      ... on HeroSectionRecord {
-        heroImage {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-    }
-  }
-}
-`;
-
-const HOMEPAGE_QUERY_SPANISH = `
-query HomePage($isBlank: BooleanType = "") {
-  menu(locale: es) {
-    aLetterFrom
-    menuItems {
-      title
-      slug
-    }
-  }
-  footer: sponsorMessageFooter(locale: es) {
-    termsLink
-    privacyLink
-    cookiesLink
-    sponsorMessage
-  }  
-  homePage(locale: es) {
-            seo: _seoMetaTags {
-      tag
-      content
-      attributes
-    }
-    presents
-    aLetterFrom
-    contentBlocks {
-      ... on LettersFromThumbnailRecord {
-        _modelApiKey
-        thumbnails
-      }
-      ... on WordBlockRecord {
-        copy
-        _modelApiKey
-        icon {
-          alt
-          url
-        }
-      }
-      ... on FeaturedVideoCollectionRecord {
-        _modelApiKey
-        video {
-          title
-          videos {
-            videoUrl {
-              url
-              title
-              providerUid
-            }
-          }
-        }
-      }
-    }
-    heroVideo {
-      url
-    }
-    heroImage {
-      responsiveImage(imgixParams: {auto: format, fit: crop}) {
-        src
-        title
-        alt
-        base64
-        bgColor
-        width
-        height
-        aspectRatio
-      }
-    }
-  }
-  allPages(orderBy: order_ASC,locale: es, filter: {title: {isBlank: $isBlank}}, first: 8) {
-    id
-    slug
-    title
-    contentBlocks {
-      ... on HeroSectionRecord {
-        heroImage {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-    }
-  }
-}
-`;
-
-const HOMEPAGE_QUERY_FRENCH = `
-query HomePage($isBlank: BooleanType = "") {
-  menu(locale: fr) {
-    aLetterFrom
-    menuItems {
-      title
-      slug
-    }
-  }
-  footer: sponsorMessageFooter(locale: fr) {
-    termsLink
-    privacyLink
-    cookiesLink
-    sponsorMessage
-  }
-  homePage(locale: fr) {
-            seo: _seoMetaTags {
-      tag
-      content
-      attributes
-    }
-    presents
-    aLetterFrom
-    contentBlocks {
-      ... on LettersFromThumbnailRecord {
-        _modelApiKey
-        thumbnails
-      }
-      ... on WordBlockRecord {
-        copy
-        _modelApiKey
-        icon {
-          alt
-          url
-        }
-      }
-      ... on FeaturedVideoCollectionRecord {
-        _modelApiKey
-        video {
-          title
-          videos {
-            videoUrl {
-              url
-              title
-              providerUid
-            }
-          }
-        }
-      }
-    }
-    heroVideo {
-      url
-    }
-    heroImage {
-      responsiveImage(imgixParams: {auto: format, fit: crop}) {
-        src
-        title
-        alt
-        base64
-        bgColor
-        width
-        height
-        aspectRatio
-      }
-    }
-  }
-  allPages(orderBy: order_ASC,locale: fr, filter: {title: {isBlank: $isBlank}}, first: 8) {
+  allPages(orderBy: order_ASC, locale: $locale, filter: {title: {isBlank: $isBlank}}, first: 8) {
     id
     slug
     title
@@ -315,13 +135,16 @@ query HomePage($isBlank: BooleanType = "") {
 
 export async function getStaticProps() {
   const english = await request({
-    query: HOMEPAGE_QUERY_ENGLISH,
+    query: HOMEPAGE_QUERY,
+    variables: { locale: "en" },
   });
   const spanish = await request({
-    query: HOMEPAGE_QUERY_SPANISH,
+    query: HOMEPAGE_QUERY,
+    variables: { locale: "es" },
   });
   const french = await request({
-    query: HOMEPAGE_QUERY_FRENCH,
+    query: HOMEPAGE_QUERY,
+    variables: { locale: "fr" },
   });
   return {
     props: { english, spanish, french },

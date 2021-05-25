@@ -90,174 +90,26 @@ export default function AboutPage({ english, spanish, french }) {
   );
 }
 
-const ABOUT_QUERY_ENGLISH = `
-query AboutQuery {
-  homePage(locale: en) {
+const ABOUT_QUERY = `
+query AboutQuery($locale: SiteLocale) {
+  homePage(locale: $locale) {
     aLetterFrom
     presents
   }
-  menu(locale: en) {
+  menu(locale: $locale) {
     aLetterFrom
     menuItems {
       title
       slug
     }
   }
-  footer: sponsorMessageFooter(locale: en) {
+  footer: sponsorMessageFooter(locale: $locale) {
     termsLink
     privacyLink
     cookiesLink
     sponsorMessage
   }
-  aboutPage(locale: en) {
-                seo: _seoMetaTags {
-      tag
-      content
-      attributes
-    }
-    title
-    contentBlocks {
-      ... on VideoRecord {
-        _modelApiKey
-        video {
-          url
-          title
-          providerUid
-        }
-      }
-      ... on FullWidthGalleryRecord {
-        _modelApiKey
-        gallery {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-      ... on GalleryRecord {
-        _modelApiKey
-        gallery {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-      ... on CopyRecord {
-        copy
-        _modelApiKey
-      }
-    }
-  }
-}
-`;
-
-const ABOUT_QUERY_SPANISH = `
-query AboutQuery {
-  homePage(locale: es) {
-    aLetterFrom
-    presents
-  }
-  menu(locale: es) {
-    aLetterFrom
-    menuItems {
-      title
-      slug
-    }
-  }
-  footer: sponsorMessageFooter(locale: es) {
-    termsLink
-    privacyLink
-    cookiesLink
-    sponsorMessage
-  }
-  aboutPage(locale: es) {
-                seo: _seoMetaTags {
-      tag
-      content
-      attributes
-    }
-    title
-    contentBlocks {
-      ... on VideoRecord {
-        _modelApiKey
-        video {
-          url
-          title
-          providerUid
-        }
-      }
-      ... on FullWidthGalleryRecord {
-        _modelApiKey
-        gallery {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-      ... on GalleryRecord {
-        _modelApiKey
-        gallery {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-      ... on CopyRecord {
-        copy
-        _modelApiKey
-      }
-    }
-  }
-}
-`;
-
-const ABOUT_QUERY_FRENCH = `
-query AboutQuery {
-  homePage(locale: fr) {
-    aLetterFrom
-    presents
-  }
-  menu(locale: fr) {
-    aLetterFrom
-    menuItems {
-      title
-      slug
-    }
-  }
-  footer: sponsorMessageFooter(locale: fr) {
-    termsLink
-    privacyLink
-    cookiesLink
-    sponsorMessage
-  }
-  aboutPage(locale: fr) {
+  aboutPage(locale: $locale) {
                 seo: _seoMetaTags {
       tag
       content
@@ -314,13 +166,16 @@ query AboutQuery {
 
 export async function getStaticProps() {
   const english = await request({
-    query: ABOUT_QUERY_ENGLISH,
+    query: ABOUT_QUERY,
+    variables: { locale: "en" },
   });
   const spanish = await request({
-    query: ABOUT_QUERY_SPANISH,
+    query: ABOUT_QUERY,
+    variables: { locale: "es" },
   });
   const french = await request({
-    query: ABOUT_QUERY_FRENCH,
+    query: ABOUT_QUERY,
+    variables: { locale: "fr" },
   });
 
   return {

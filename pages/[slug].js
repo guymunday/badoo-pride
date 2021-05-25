@@ -75,22 +75,22 @@ query PagesQuery {
 }
 `;
 
-const PAGE_QUERY_ENGLISH = `
-query PageQuery($slug: String!, $isBlank: BooleanType = "") {
-  menu(locale: en) {
+const PAGE_QUERY = `
+query PageQuery($slug: String!, $isBlank: BooleanType = "", $locale: SiteLocale) {
+  menu(locale: $locale) {
     aLetterFrom
     menuItems {
       title
       slug
     }
   }
-  footer: sponsorMessageFooter(locale: en) {
+  footer: sponsorMessageFooter(locale: $locale) {
     termsLink
     privacyLink
     cookiesLink
     sponsorMessage
   }
-  allPages(locale: en, filter: {slug: {eq: $slug}}) {
+  allPages(locale: $locale, filter: {slug: {eq: $slug}}) {
     slug
     title
        seo: _seoMetaTags {
@@ -158,230 +158,10 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "") {
       }
     }
   }
-  homePage(locale: en) {
+  homePage(locale: $locale) {
     aLetterFrom
   }
-  seeMore: allPages(orderBy: order_ASC,locale: en, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
-    id
-    slug
-    title
-    contentBlocks {
-      ... on HeroSectionRecord {
-        heroImage {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-    }
-  }
-}
-`;
-
-const PAGE_QUERY_SPANISH = `
-query PageQuery($slug: String!, $isBlank: BooleanType = "") {
-  menu(locale: es) {
-    aLetterFrom
-    menuItems {
-      title
-      slug
-    }
-  }
-  footer: sponsorMessageFooter(locale: es) {
-    termsLink
-    privacyLink
-    cookiesLink
-    sponsorMessage
-  }
-  allPages(locale: es, filter: {slug: {eq: $slug}}) {
-    slug
-    title
-      seo:  _seoMetaTags {
-      attributes
-      content
-      tag
-    }
-    contentBlocks {
-      ... on VideoRecord {
-        _modelApiKey
-        video {
-          url
-          title
-          providerUid
-        }
-      }
-      ... on HeroSectionRecord {
-        _modelApiKey
-        heroImage {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-      ... on FullWidthGalleryRecord {
-        _modelApiKey
-        gallery {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-      ... on GalleryRecord {
-        _modelApiKey
-        gallery {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-      ... on CopyRecord {
-        copy
-        _modelApiKey
-      }
-    }
-  }
-  homePage(locale: es) {
-    aLetterFrom
-  }
-  seeMore: allPages(orderBy: order_ASC,locale: es, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
-    id
-    slug
-    title
-    contentBlocks {
-      ... on HeroSectionRecord {
-        heroImage {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-    }
-  }
-}
-`;
-
-const PAGE_QUERY_FRENCH = `
-query PageQuery($slug: String!, $isBlank: BooleanType = "") {
-  menu(locale: fr) {
-    aLetterFrom
-    menuItems {
-      title
-      slug
-    }
-  }
-  footer: sponsorMessageFooter(locale: fr) {
-    termsLink
-    privacyLink
-    cookiesLink
-    sponsorMessage
-  }
-  allPages(locale: fr, filter: {slug: {eq: $slug}}) {
-    slug
-    title
-     seo:   _seoMetaTags {
-      attributes
-      content
-      tag
-    }
-    contentBlocks {
-      ... on VideoRecord {
-        _modelApiKey
-        video {
-          url
-          title
-          providerUid
-        }
-      }
-      ... on HeroSectionRecord {
-        _modelApiKey
-        heroImage {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-      ... on FullWidthGalleryRecord {
-        _modelApiKey
-        gallery {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-      ... on GalleryRecord {
-        _modelApiKey
-        gallery {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-      ... on CopyRecord {
-        copy
-        _modelApiKey
-      }
-    }
-  }
-  homePage(locale: fr) {
-    aLetterFrom
-  }
-  seeMore: allPages(orderBy: order_ASC,locale: fr, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
+  seeMore: allPages(orderBy: order_ASC,locale: $locale, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
     id
     slug
     title
@@ -409,16 +189,16 @@ export async function getStaticProps({ params }) {
   const { slug } = params;
 
   const english = await request({
-    query: PAGE_QUERY_ENGLISH,
-    variables: { slug },
+    query: PAGE_QUERY,
+    variables: { slug, locale: "en" },
   });
   const spanish = await request({
-    query: PAGE_QUERY_SPANISH,
-    variables: { slug },
+    query: PAGE_QUERY,
+    variables: { slug, locale: "es" },
   });
   const french = await request({
-    query: PAGE_QUERY_FRENCH,
-    variables: { slug },
+    query: PAGE_QUERY,
+    variables: { slug, locale: "fr" },
   });
 
   return {

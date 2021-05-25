@@ -97,23 +97,21 @@ export default function SeeMore({ data, letterFrom }) {
           <SeeMoreStyles>
             {data?.map((t, i) => {
               return (
-                <>
-                  <div
-                    key={i}
-                    className="see-more-inner"
-                    onClick={() => router.push(`/${t?.slug}`)}
-                    role="button"
-                  >
-                    {t?.contentBlocks[0]?.heroImage?.responsiveImage && (
-                      <Image
-                        data={t?.contentBlocks[0]?.heroImage?.responsiveImage}
-                        className="see-more-image"
-                      />
-                    )}
-                    <p>{letterFrom}</p>
-                    <h1>{t?.title}</h1>
-                  </div>
-                </>
+                <div
+                  key={i}
+                  className="see-more-inner"
+                  onClick={() => router.push(`/${t?.slug}`)}
+                  role="button"
+                >
+                  {t?.contentBlocks[0]?.heroImage?.responsiveImage && (
+                    <Image
+                      data={t?.contentBlocks[0]?.heroImage?.responsiveImage}
+                      className="see-more-image"
+                    />
+                  )}
+                  <p>{letterFrom}</p>
+                  <h1>{t?.title}</h1>
+                </div>
               );
             })}
           </SeeMoreStyles>

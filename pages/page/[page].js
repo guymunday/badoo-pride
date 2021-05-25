@@ -42,22 +42,22 @@ export default function Home({ english, spanish, french }) {
   );
 }
 
-const HOMEPAGE_QUERY_ENGLISH = `
-query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
-  menu(locale: en) {
+const HOMEPAGE_QUERY = `
+query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType, $locale: SiteLocale) {
+  menu(locale: $locale) {
     aLetterFrom
     menuItems {
       title
       slug
     }
   }
-  footer: sponsorMessageFooter(locale: en) {
+  footer: sponsorMessageFooter(locale: $locale) {
     termsLink
     privacyLink
     cookiesLink
     sponsorMessage
   }
-  homePage(locale: en) {
+  homePage(locale: $locale) {
     presents
     aLetterFrom
             seo: _seoMetaTags {
@@ -108,187 +108,7 @@ query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
       }
     }
   }
-  allPages(orderBy: order_ASC,locale: en, filter: {title: {isBlank: $isBlank}}, first: $limit, skip: $skip) {
-    id
-    slug
-    title
-    contentBlocks {
-      ... on HeroSectionRecord {
-        heroImage {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-    }
-  }
-}
-`;
-
-const HOMEPAGE_QUERY_SPANISH = `
-query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
-  menu(locale: es) {
-    aLetterFrom
-    menuItems {
-      title
-      slug
-    }
-  }
-  footer: sponsorMessageFooter(locale: es) {
-    termsLink
-    privacyLink
-    cookiesLink
-    sponsorMessage
-  }  
-  homePage(locale: es) {
-    presents
-    aLetterFrom
-            seo: _seoMetaTags {
-      tag
-      content
-      attributes
-    }
-    contentBlocks {
-      ... on LettersFromThumbnailRecord {
-        _modelApiKey
-        thumbnails
-      }
-      ... on WordBlockRecord {
-        copy
-        _modelApiKey
-        icon {
-          alt
-          url
-        }
-      }
-      ... on FeaturedVideoCollectionRecord {
-        _modelApiKey
-        video {
-          title
-          videos {
-            videoUrl {
-              url
-              title
-              providerUid
-            }
-          }
-        }
-      }
-    }
-    heroVideo {
-      url
-    }
-    heroImage {
-      responsiveImage(imgixParams: {auto: format, fit: crop}) {
-        src
-        title
-        alt
-        base64
-        bgColor
-        width
-        height
-        aspectRatio
-      }
-    }
-  }
-  allPages(orderBy: order_ASC,locale: es, filter: {title: {isBlank: $isBlank}}, first: $limit, skip: $skip) {
-    id
-    slug
-    title
-    contentBlocks {
-      ... on HeroSectionRecord {
-        heroImage {
-          responsiveImage(imgixParams: {auto: format, fit: crop}) {
-            src
-            title
-            alt
-            base64
-            bgColor
-            width
-            height
-            aspectRatio
-          }
-        }
-      }
-    }
-  }
-}
-`;
-
-const HOMEPAGE_QUERY_FRENCH = `
-query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType) {
-  menu(locale: fr) {
-    aLetterFrom
-    menuItems {
-      title
-      slug
-    }
-  }
-  footer: sponsorMessageFooter(locale: fr) {
-    termsLink
-    privacyLink
-    cookiesLink
-    sponsorMessage
-  }
-  homePage(locale: fr) {
-    presents
-    aLetterFrom
-            seo: _seoMetaTags {
-      tag
-      content
-      attributes
-    }
-    contentBlocks {
-      ... on LettersFromThumbnailRecord {
-        _modelApiKey
-        thumbnails
-      }
-      ... on WordBlockRecord {
-        copy
-        _modelApiKey
-        icon {
-          alt
-          url
-        }
-      }
-      ... on FeaturedVideoCollectionRecord {
-        _modelApiKey
-        video {
-          title
-          videos {
-            videoUrl {
-              url
-              title
-              providerUid
-            }
-          }
-        }
-      }
-    }
-    heroVideo {
-      url
-    }
-    heroImage {
-      responsiveImage(imgixParams: {auto: format, fit: crop}) {
-        src
-        title
-        alt
-        base64
-        bgColor
-        width
-        height
-        aspectRatio
-      }
-    }
-  }
-  allPages(orderBy: order_ASC,locale: fr, filter: {title: {isBlank: $isBlank}}, first: $limit, skip: $skip) {
+  allPages(orderBy: order_ASC,locale: $locale, filter: {title: {isBlank: $isBlank}}, first: $limit, skip: $skip) {
     id
     slug
     title
@@ -319,16 +139,16 @@ export async function getStaticProps({ params }) {
   const skip = (parseInt(page) - 1) * limit;
 
   const english = await request({
-    query: HOMEPAGE_QUERY_ENGLISH,
-    variables: { limit, skip },
+    query: HOMEPAGE_QUERY,
+    variables: { limit, skip, locale: "en" },
   });
   const spanish = await request({
-    query: HOMEPAGE_QUERY_SPANISH,
-    variables: { limit, skip },
+    query: HOMEPAGE_QUERY,
+    variables: { limit, skip, locale: "es" },
   });
   const french = await request({
-    query: HOMEPAGE_QUERY_FRENCH,
-    variables: { limit, skip },
+    query: HOMEPAGE_QUERY,
+    variables: { limit, skip, locale: "fr" },
   });
   return {
     props: { english, spanish, french },
@@ -337,15 +157,18 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths({ locales }) {
   const resultsEnglish = await request({
-    query: HOMEPAGE_QUERY_ENGLISH,
+    query: HOMEPAGE_QUERY,
+    variables: { locale: "en" },
   });
 
   const resultsFrench = await request({
-    query: HOMEPAGE_QUERY_FRENCH,
+    query: HOMEPAGE_QUERY,
+    variables: { locale: "fr" },
   });
 
   const resultsSpanish = await request({
-    query: HOMEPAGE_QUERY_SPANISH,
+    query: HOMEPAGE_QUERY,
+    variables: { locale: "es" },
   });
 
   const englishPages = Math.ceil(resultsEnglish.allPages.length / 2);
