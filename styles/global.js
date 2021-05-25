@@ -177,7 +177,10 @@ const globalCss = css`
     text-align: center;
     font-family: "Windsor", sans-serif;
     font-weight: 700;
-    font-size: 2rem !important;
+    font-size: 3rem !important;
+    @media screen and (max-width: 768px) {
+      font-size: 2rem !important;
+    }
   }
 `;
 
