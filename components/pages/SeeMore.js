@@ -91,8 +91,7 @@ export default function SeeMore({ data, letterFrom }) {
                 : locale === "fr"
                 ? "Afficher plus"
                 : "See more"}
-            </h2>{" "}
-            <img src={eyesIcon} alt="eyes icon" />
+            </h2>
           </SeeMoreHeader>
           <SeeMoreStyles>
             {data?.map((t, i) => {
