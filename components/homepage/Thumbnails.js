@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { Image } from "react-datocms";
 import rightArrow from "../../assets/icons/arrow.svg";
-import eyesIcon from "../../assets/icons/eyes-icon.svg";
 
 const ThumbnailGrid = styled.div`
   display: grid;
@@ -33,7 +32,7 @@ const ThumbnailGrid = styled.div`
       grid-column: span 6;
       .thumbnail-image {
         :hover {
-          transform: rotate(-3deg);
+          transform: rotate(-2deg);
         }
       }
       @media screen and (max-width: 768px) {
@@ -47,7 +46,7 @@ const ThumbnailGrid = styled.div`
       height: 400px;
       transition: 0.3s ease;
       :hover {
-        transform: rotate(3deg);
+        transform: rotate(2deg);
       }
     }
     p {
@@ -142,7 +141,6 @@ export default function Thumbnails({ data, aLetterFrom }) {
                 )
               }
             >
-              <img src={eyesIcon} style={{ maxWidth: 40 }} alt="eyes icon" />{" "}
               {locale === "es"
                 ? "Siguiente"
                 : locale === "fr"
@@ -161,7 +159,6 @@ export default function Thumbnails({ data, aLetterFrom }) {
               className="pagination-link"
               onClick={() => router.push(`/page/2#thumbnails`)}
             >
-              <img style={{ maxWidth: 40 }} src={eyesIcon} alt="eyes icon" />{" "}
               {locale === "es"
                 ? "Siguiente"
                 : locale === "fr"

@@ -86,11 +86,11 @@ const CarouselStyles = styled.div`
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -57%);
         z-index: -1;
         img {
           width: 35px;
-          display: block;
+          object-fit: fill;
         }
       }
     }

@@ -5,6 +5,8 @@ import LanguagePicker from "./LanguagePicker";
 import RainbowBackgroundFade from "./RainbowBackgroundFade";
 import Logo from "./Logo";
 
+gsap.config({ nullTargetWarn: false });
+
 export default function Layout({ children }) {
   const mainRef = React.useRef(null);
   const router = useRouter();

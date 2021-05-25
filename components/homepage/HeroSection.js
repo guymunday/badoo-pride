@@ -29,8 +29,10 @@ const HeroStyles = styled.section`
     .title {
       font-size: 8.5rem;
       line-height: 0.8;
+      margin-left: 15px;
       @media screen and (max-width: 600px) {
         font-size: 5rem;
+        margin-left: 0;
       }
     }
     h3 {

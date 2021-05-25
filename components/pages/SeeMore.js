@@ -39,7 +39,7 @@ const SeeMoreStyles = styled.div`
       height: 325px;
       transition: 0.3s ease;
       :hover {
-        transform: rotate(3deg);
+        transform: rotate(2deg);
       }
     }
     p {
