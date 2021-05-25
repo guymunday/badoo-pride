@@ -5,4 +5,7 @@ module.exports = withImages({
     locales: ["en", "fr", "es"],
     defaultLocale: "en",
   },
+  future: {
+    webpack5: true,
+  },
 });
