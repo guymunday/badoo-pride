@@ -43,6 +43,10 @@ const CarouselStyles = styled.div`
     }
   }
 
+  .video-contianer {
+    width: 100%;
+  }
+
   .mobile-arrows {
     display: flex;
     width: 100%;
@@ -96,10 +100,6 @@ const CarouselStyles = styled.div`
       }
     }
   }
-`;
-
-const VideoContainer = styled.div`
-  width: 100%;
 `;
 
 export default function Carousel({ data }) {
@@ -164,7 +164,7 @@ export default function Carousel({ data }) {
                 {slides === i && (
                   <>
                     {v?.videoUrl?.url.includes("youtu") && (
-                      <VideoContainer>
+                      <div className="video-container">
                         <div className="iframe-container">
                           <iframe
                             title={v?.videoUrl?.title}
@@ -174,10 +174,10 @@ export default function Carousel({ data }) {
                             allowFullScreen
                           />
                         </div>
-                      </VideoContainer>
+                      </div>
                     )}
                     {v?.videoUrl?.url.includes("vimeo") && (
-                      <VideoContainer>
+                      <div className="video-container">
                         <div className="iframe-container">
                           <iframe
                             title={v?.videoUrl?.title}
@@ -187,7 +187,7 @@ export default function Carousel({ data }) {
                             allowFullScreen
                           />
                         </div>
-                      </VideoContainer>
+                      </div>
                     )}
                   </>
                 )}

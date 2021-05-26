@@ -19,7 +19,7 @@ export default function FadeIn({ children }) {
 
     tl.from(innerRef.current, {
       opacity: 0,
-      y: 100,
+      y: 50,
     });
   }, []);
 
