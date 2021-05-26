@@ -46,11 +46,9 @@ export default function Footer({ data }) {
 
   return (
     <>
-      <FadeIn>
-        <SponsorMessage>
-          <SanitisedHtml center html={data?.sponsorMessage} />
-        </SponsorMessage>
-      </FadeIn>
+      <SponsorMessage>
+        <SanitisedHtml center html={data?.sponsorMessage} />
+      </SponsorMessage>
       <FooterStyles>
         <div className="footer-line" />
         <div className="footer-inner">

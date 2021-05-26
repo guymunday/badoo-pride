@@ -43,7 +43,7 @@ const CarouselStyles = styled.div`
     }
   }
 
-  .video-contianer {
+  .video-container {
     width: 100%;
   }
 
