@@ -86,7 +86,7 @@ const globalCss = css`
   .iframe-container {
     position: relative;
     width: 100%;
-    padding-top: 56.25%;
+    padding-bottom: 56.25%;
     iframe {
       position: absolute;
       top: 0;

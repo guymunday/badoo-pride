@@ -17,6 +17,7 @@ const CarouselStyles = styled.div`
   max-width: 1100px;
   margin: auto;
   position: relative;
+  width: 100%;
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
@@ -97,6 +98,10 @@ const CarouselStyles = styled.div`
   }
 `;
 
+const VideoContainer = styled.div`
+  width: 100%;
+`;
+
 export default function Carousel({ data }) {
   const [slides, setSlides] = React.useState(0);
   // const [touchStart, setTouchStart] = React.useState(0);
@@ -159,26 +164,30 @@ export default function Carousel({ data }) {
                 {slides === i && (
                   <>
                     {v?.videoUrl?.url.includes("youtu") && (
-                      <div className="iframe-container">
-                        <iframe
-                          title={v?.videoUrl?.title}
-                          src={`https://www.youtube.com/embed/${v?.videoUrl?.providerUid}`}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      </div>
+                      <VideoContainer>
+                        <div className="iframe-container">
+                          <iframe
+                            title={v?.videoUrl?.title}
+                            src={`https://www.youtube.com/embed/${v?.videoUrl?.providerUid}`}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </VideoContainer>
                     )}
                     {v?.videoUrl?.url.includes("vimeo") && (
-                      <div className="iframe-container">
-                        <iframe
-                          title={v?.videoUrl?.title}
-                          src={`https://player.vimeo.com/video/${v?.videoUrl?.providerUid}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
-                          frameBorder="0"
-                          allow="autoplay; fullscreen; picture-in-picture"
-                          allowFullScreen
-                        />
-                      </div>
+                      <VideoContainer>
+                        <div className="iframe-container">
+                          <iframe
+                            title={v?.videoUrl?.title}
+                            src={`https://player.vimeo.com/video/${v?.videoUrl?.providerUid}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+                            frameBorder="0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </VideoContainer>
                     )}
                   </>
                 )}
