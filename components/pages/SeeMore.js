@@ -71,7 +71,7 @@ export default function SeeMore({ data, letterFrom }) {
 
     tl.from(".see-more-inner", {
       opacity: 0,
-      y: 100,
+      y: 50,
       stagger: 0.2,
     });
   }, []);
