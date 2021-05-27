@@ -26,12 +26,15 @@ export default function SanitisedHtml({ center, html, ...rest }) {
     allowedAttributes: {
       a: ["href", "name", "target", "class", "rel"],
       iframe: ["width", "height", "src"],
-      img: ["src", "alt", "title"],
+      img: ["src", "alt", "title", "class"],
     },
     transformTags: {
       a: sanitizeHtml.simpleTransform("a", {
         class: "sanitised-anchor",
         target: "_blank",
+      }),
+      img: sanitizeHtml.simpleTransform("img", {
+        class: "sanitised-img",
       }),
     },
   });

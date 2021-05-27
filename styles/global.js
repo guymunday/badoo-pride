@@ -103,7 +103,7 @@ const globalCss = css`
       word-break: break-word;
     }
     *:not(li) {
-      margin: 0 0 30px 0;
+      margin: 0 auto 30px auto;
       &:last-child {
         margin: 0;
       }
@@ -118,8 +118,16 @@ const globalCss = css`
       margin: 0;
     }
 
+    .sanitised-img {
+      display: block;
+      max-width: 350px;
+      width: 100%;
+      margin: 10px auto !important;
+    }
+
     .sanitised-anchor {
       text-decoration: underline;
+      cursor: pointer;
     }
   }
 
