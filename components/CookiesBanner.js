@@ -1,13 +1,39 @@
+import * as React from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import CookieConsent from "react-cookie-consent";
+import favicon from "../assets/favicon.ico";
+import Analytics from "./Analytics";
+import { getCookie } from "../lib/getCookie";
 
 export default function CookiesBanner() {
+  const [cookiesAccepted, setCookiesAccepted] = React.useState(false);
   const router = useRouter();
   const { locale } = router;
 
+  React.useEffect(() => {
+    const cookieGA = getCookie("cookies_settings");
+    if (cookieGA === "true") {
+      setCookiesAccepted(true);
+      console.log("cookies accepted");
+    } else {
+      setCookiesAccepted(false);
+      console.log("cookies rejected");
+    }
+  }, []);
+
   return (
     <>
+      {cookiesAccepted ? (
+        <Analytics />
+      ) : (
+        <Head>
+          <link rel="icon" type="image/ico" href={favicon} />
+        </Head>
+      )}
       <CookieConsent
+        onAccept={() => setCookiesAccepted(true)}
+        onDecline={() => setCookiesAccepted(false)}
         location="bottom"
         buttonText={
           locale === "es" ? (
@@ -39,7 +65,7 @@ export default function CookiesBanner() {
             Utilizamos cookies para que nuestra página funcione mejor. Esto
             incluye cookies analíticas y cookies publicitarias. Para obtener más
             información, visita nuestra{" "}
-            <a herf="https://badoo.com/es/cookie-policy/" target="_blank">
+            <a href="https://badoo.com/es/cookie-policy/" target="_blank">
               Política de cookies.
             </a>
           </>
@@ -48,7 +74,7 @@ export default function CookiesBanner() {
             Nous utilisons des cookies pour mieux faire fonctionner notre site,
             ce qui inclut des cookies analytiques et des cookies publicitaires.
             Pour plus d'informations, consultez notre{" "}
-            <a herf="https://badoo.com/fr/cookie-policy/" target="_blank">
+            <a href="https://badoo.com/fr/cookie-policy/" target="_blank">
               Politique des cookies.
             </a>
           </>
@@ -57,7 +83,7 @@ export default function CookiesBanner() {
             We use cookies to make our site work better. This includes analytics
             cookies and advertising cookies. For more information, please check
             our{" "}
-            <a herf="https://badoo.com/cookie-policy/" target="_blank">
+            <a href="https://badoo.com/cookie-policy/" target="_blank">
               Cookie Policy.
             </a>
           </>
