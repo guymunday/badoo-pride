@@ -2,7 +2,6 @@ import * as React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import logoSvg from "../assets/badoo-logo.svg";
-import _ from "lodash";
 
 const LogoStyles = styled.div`
   position: fixed;

@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Image } from "react-datocms";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import eyesIcon from "../../assets/icons/eyes-icon.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 

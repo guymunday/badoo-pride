@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from "styled-components";
-import heartIcon from "../../assets/icons/heart-icon.svg";
 import { gsap } from "gsap";
 import { useRouter } from "next/router";
 import rightArrow from "../../assets/icons/arrow.svg";
@@ -104,8 +103,6 @@ const CarouselStyles = styled.div`
 
 export default function Carousel({ data }) {
   const [slides, setSlides] = React.useState(0);
-  // const [touchStart, setTouchStart] = React.useState(0);
-  // const [touchEnd, setTouchEnd] = React.useState(0);
 
   const router = useRouter();
   const { locale } = router;
@@ -124,24 +121,6 @@ export default function Carousel({ data }) {
   const handlePreviousButton = () => {
     setSlides(slides === 0 ? data?.video?.videos.length - 1 : slides - 1);
   };
-
-  // const handleTouchStart = (e) => {
-  //   setTouchStart(e.targetTouches[0].clientX);
-  // };
-
-  // const handleTouchMove = (e) => {
-  //   setTouchEnd(e.targetTouches[0].clientX);
-  // };
-
-  // const handleTouchEnd = () => {
-  //   if (touchStart - touchEnd > 50) {
-  //     handlePreviousButton();
-  //   }
-
-  //   if (touchStart - touchEnd < -50) {
-  //     handleNextButton();
-  //   }
-  // };
 
   return (
     <>
@@ -210,17 +189,12 @@ export default function Carousel({ data }) {
 
           <div className="carousel-number-buttons">
             {data?.video?.videos.map((b, i) => (
-              <button
-                key={`c-button-${i}`}
-                onClick={() => setSlides(i)}
-                style={{ color: slides === i ? "var(--colour-6)" : "" }}
-              >
-                {i + 1}
-                {slides === i && (
-                  <span className="heart-icon">
-                    <img src={heartIcon} alt="" />
-                  </span>
-                )}
+              <button key={`c-button-${i}`} onClick={() => setSlides(i)}>
+                <span
+                  style={{ borderBottom: slides === i ? "2px solid" : "" }}
+                >
+                  {i + 1}
+                </span>
               </button>
             ))}
           </div>

@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import FadeIn from "./FadeIn";
 import SanitisedHtml from "./SanitisedHtml";
 
 const SponsorMessage = styled.div`
