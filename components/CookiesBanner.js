@@ -47,9 +47,9 @@ export default function CookiesBanner() {
         enableDeclineButton
         declineButtonText={
           locale === "es" ? (
-            <>Decline</>
+            <>Disminución</>
           ) : locale === "fr" ? (
-            <>Decline</>
+            <>Déclin</>
           ) : (
             <>Decline</>
           )
