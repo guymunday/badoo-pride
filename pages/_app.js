@@ -24,11 +24,11 @@ function MyApp({ Component, pageProps }) {
         ></script>
         <script
           dangerouslySetInnerHTML={{
-            __html: `[  window.dataLayer = window.dataLayer || [];
+            __html: ` window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-2KEKKY153W');]`,
+  gtag('config', 'G-2KEKKY153W');`,
           }}
         />
       </Head>
