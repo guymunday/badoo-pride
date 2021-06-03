@@ -72,48 +72,67 @@ export default function LanguagePicker() {
   };
 
   return (
-    <>
-      <HideOnScroll left={0}>
-        <LanguagePickerContainer
-          ref={ref}
-          onMouseOver={handleMouseOver}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div
-            className="language-picker-item"
-            style={{ order: locale === "en" ? -1 : null }}
+      <>
+        <HideOnScroll left={0}>
+          <LanguagePickerContainer
+              ref={ref}
+              onMouseOver={handleMouseOver}
+              onMouseLeave={handleMouseLeave}
           >
-            <Link href={`${asPath}`} locale="en">
-              English
-            </Link>
-            {locale === "en" && (
-              <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
-            )}
-          </div>
-          <div
-            className="language-picker-item"
-            style={{ order: locale === "es" ? -1 : null }}
-          >
-            <Link href={`${asPath}`} locale="es">
-              Español
-            </Link>
-            {locale === "es" && (
-              <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
-            )}
-          </div>
-          <div
-            className="language-picker-item"
-            style={{ order: locale === "fr" ? -1 : null }}
-          >
-            <Link href={`${asPath}`} locale="fr">
-              Français
-            </Link>
-            {locale === "fr" && (
-              <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
-            )}
-          </div>
-        </LanguagePickerContainer>
-      </HideOnScroll>
-    </>
+            <div
+                className="language-picker-item"
+                style={{ order: locale === "en" ? -1 : null }}
+            >
+              <Link href={`${asPath}`} locale="en">
+                {locale === "es" ? (
+                    'Inglés'
+                ) : locale === "fr" ? (
+                    'Anglais'
+                ) : (
+                    'English'
+                )}
+              </Link>
+
+              {locale === "en" && (
+                  <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
+              )}
+            </div>
+            <div
+                className="language-picker-item"
+                style={{ order: locale === "es" ? -1 : null }}
+            >
+              <Link href={`${asPath}`} locale="es">
+                {locale === "es" ? (
+                    'Español'
+                ) : locale === "fr" ? (
+                    'Espagnol'
+                ) : (
+                    'Spanish'
+                )}
+              </Link>
+              {locale === "es" && (
+                  <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
+              )}
+            </div>
+            <div
+                className="language-picker-item"
+                style={{ order: locale === "fr" ? -1 : null }}
+            >
+              <Link href={`${asPath}`} locale="fr">
+                {locale === "es" ? (
+                    'Francés'
+                ) : locale === "fr" ? (
+                    'Français'
+                ) : (
+                    'French'
+                )}
+              </Link>
+              {locale === "fr" && (
+                  <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
+              )}
+            </div>
+          </LanguagePickerContainer>
+        </HideOnScroll>
+      </>
   );
 }
