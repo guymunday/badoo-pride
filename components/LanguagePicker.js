@@ -84,7 +84,11 @@ export default function LanguagePicker() {
             style={{ order: locale === "en" ? -1 : null }}
           >
             <Link href={`${asPath}`} locale="en">
-              English
+              {locale === "es"
+                ? "Inglés"
+                : locale === "fr"
+                ? "Anglais"
+                : "English"}
             </Link>
             {locale === "en" && (
               <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
@@ -95,7 +99,11 @@ export default function LanguagePicker() {
             style={{ order: locale === "es" ? -1 : null }}
           >
             <Link href={`${asPath}`} locale="es">
-              Español
+              {locale === "es"
+                ? "Español"
+                : locale === "fr"
+                ? "Espagnol"
+                : "Spanish"}
             </Link>
             {locale === "es" && (
               <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
@@ -106,7 +114,11 @@ export default function LanguagePicker() {
             style={{ order: locale === "fr" ? -1 : null }}
           >
             <Link href={`${asPath}`} locale="fr">
-              Français
+              {locale === "es"
+                ? "Francés"
+                : locale === "fr"
+                ? "Français"
+                : "French"}
             </Link>
             {locale === "fr" && (
               <span style={{ fontSize: 12, marginLeft: 5 }}>▼</span>
