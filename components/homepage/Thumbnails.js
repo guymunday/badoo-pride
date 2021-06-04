@@ -132,7 +132,7 @@ export default function Thumbnails({ data, aLetterFrom }) {
             </div>
           )}
           <Spacer />
-          {data.length > 7 && (
+          {data.length > 8 && (
             <div
               className="pagination-link"
               onClick={() =>
@@ -154,7 +154,7 @@ export default function Thumbnails({ data, aLetterFrom }) {
       {router.asPath === "/" && (
         <Pagination>
           <Spacer />
-          {data.length > 7 && (
+          {data.length > 8 && (
             <div
               className="pagination-link"
               onClick={() => router.push(`/page/2#thumbnails`)}
