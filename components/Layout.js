@@ -29,7 +29,7 @@ export default function Layout({ children }) {
   return (
     <>
       <RainbowBackgroundFade>
-        <LanguagePicker />
+        {/* <LanguagePicker /> unhide for other languages */}
         <Logo />
         <main ref={mainRef}>{children}</main>
       </RainbowBackgroundFade>
