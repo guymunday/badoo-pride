@@ -4,7 +4,7 @@ import styled from "styled-components";
 import logoSvg from "../assets/badoo-logo.svg";
 
 const LogoStyles = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 50%;
   z-index: 99;
@@ -20,37 +20,9 @@ const LogoStyles = styled.div`
 `;
 
 export default function Logo() {
-  const logoRef = React.useRef(null);
-  const [scroll, setScroll] = React.useState(false);
-
-  const handleScolled = () => {
-    let lastScroll = 0;
-
-    window.addEventListener("scroll", () => {
-      const currentScroll = window.pageYOffset;
-
-      if (currentScroll <= 200) {
-        setScroll(false);
-        return;
-      }
-
-      if (currentScroll > lastScroll) {
-        setScroll(true);
-      } else if (currentScroll < lastScroll) {
-        setScroll(false);
-      }
-
-      lastScroll = currentScroll;
-    });
-  };
-
-  React.useEffect(() => {
-    handleScolled();
-  }, []);
-
   return (
     <>
-      <LogoStyles style={{ top: scroll ? -100 : 0 }} ref={logoRef}>
+      <LogoStyles>
         <Link href="/">
           <img src={logoSvg} alt="Badoo logo" />
         </Link>

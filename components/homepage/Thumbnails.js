@@ -97,6 +97,7 @@ export default function Thumbnails({ data, aLetterFrom }) {
                   <Image
                     data={t?.contentBlocks[0]?.heroImage?.responsiveImage}
                     className="thumbnail-image"
+                    fadeInDuration={100}
                   />
                 )}
                 <p>{aLetterFrom}</p>

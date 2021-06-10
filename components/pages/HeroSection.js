@@ -65,7 +65,9 @@ export default function HeroSection({ image, subtitle, title }) {
   return (
     <>
       <HeroStyles>
-        {image && <Image data={image} className="hero-image" />}
+        {image && (
+          <Image data={image} className="hero-image" fadeInDuration={100} />
+        )}
       </HeroStyles>
       <FadeIn>
         <HeroTitle>
