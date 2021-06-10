@@ -30,9 +30,17 @@ export default function Slices({ slices, letterFrom, title }) {
           </FadeIn>
         );
       case "gallery":
-        return <MasonryGallery key={i} images={s?.gallery} />;
+        return (
+          <FadeIn key={i}>
+            <MasonryGallery images={s?.gallery} />
+          </FadeIn>
+        );
       case "full_width_gallery":
-        return <FullwidthGallery key={i} images={s?.gallery} />;
+        return (
+          <FadeIn key={i}>
+            <FullwidthGallery images={s?.gallery} />
+          </FadeIn>
+        );
       default:
         return null;
     }
