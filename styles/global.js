@@ -185,8 +185,9 @@ const globalCss = css`
     text-align: center;
     font-family: "Windsor", sans-serif;
     font-weight: 700;
-    font-size: 3rem !important;
+    font-size: 2.7rem !important;
     line-height: 1.3;
+    padding: 20px 0;
     @media screen and (max-width: 768px) {
       font-size: 2rem !important;
     }
