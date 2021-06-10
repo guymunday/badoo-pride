@@ -90,7 +90,7 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "", $locale: SiteLocale)
     cookiesLink
     sponsorMessage
   }
-  allPages(locale: $locale, filter: {slug: {eq: $slug}}) {
+  allPages(locale: $locale, filter: { slug: {eq: $slug}}) {
     slug
     title
        seo: _seoMetaTags {
