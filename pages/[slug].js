@@ -90,7 +90,7 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "", $locale: SiteLocale)
     cookiesLink
     sponsorMessage
   }
-  allPages(locale: $locale, filter: {slug: {eq: $slug}}) {
+  allPages(locale: $locale, filter: {publishThisLoacle: {eq: "true"}, slug: {eq: $slug}}) {
     slug
     title
        seo: _seoMetaTags {
@@ -161,7 +161,7 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "", $locale: SiteLocale)
   homePage(locale: $locale) {
     aLetterFrom
   }
-  seeMore: allPages(orderBy: order_ASC,locale: $locale, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
+  seeMore: allPages(orderBy: order_ASC,locale: $locale, filter: {publishThisLoacle: {eq: "true"}, title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
     id
     slug
     title

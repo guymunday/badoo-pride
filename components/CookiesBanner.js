@@ -15,10 +15,8 @@ export default function CookiesBanner() {
     const cookieGA = getCookie("cookies_settings");
     if (cookieGA === "true") {
       setCookiesAccepted(true);
-      console.log("cookies accepted");
     } else {
       setCookiesAccepted(false);
-      console.log("cookies rejected");
     }
   }, []);
 

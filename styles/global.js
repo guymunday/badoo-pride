@@ -186,8 +186,12 @@ const globalCss = css`
     font-family: "Windsor", sans-serif;
     font-weight: 700;
     font-size: 3rem !important;
+    line-height: 1.3;
     @media screen and (max-width: 768px) {
       font-size: 2rem !important;
+    }
+    @media screen and (max-width: 500px) {
+      font-size: 1.5rem !important;
     }
   }
 `;

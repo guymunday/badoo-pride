@@ -108,7 +108,7 @@ query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType, $loc
       }
     }
   }
-  allPages(orderBy: order_ASC,locale: $locale, filter: {title: {isBlank: $isBlank}}, first: $limit, skip: $skip) {
+  allPages(orderBy: order_ASC,locale: $locale, filter: {publishThisLoacle: {eq: "true"}, title: {isBlank: $isBlank}}, first: $limit, skip: $skip) {
     id
     slug
     title
