@@ -63,7 +63,8 @@ const globalCss = css`
     }
   }
 
-  img {
+  img,
+  video {
     object-fit: cover;
   }
 
