@@ -50,7 +50,7 @@ export default function FullwidthGallery({ images }) {
       </ImageWrapper>
       {showImageModal && (
         <Modal onClick={() => setShowImageModal(false)}>
-          <Image data={images[imageIndex].responsiveImage} />
+          <Image data={images[imageIndex].responsiveImage} fadeInDuration={0} />
         </Modal>
       )}
     </>
