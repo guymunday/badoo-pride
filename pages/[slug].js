@@ -99,6 +99,19 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "", $locale: SiteLocale)
       tag
     }
     contentBlocks {
+      ... on VerticalVideoRecord {
+        _modelApiKey
+        verticalVideoOne {
+          url
+          title
+          providerUid
+        }
+        verticalVideoTwo {
+          url
+          title
+          providerUid
+        }
+      }
       ... on VideoRecord {
         _modelApiKey
         video {

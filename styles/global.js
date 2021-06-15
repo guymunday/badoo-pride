@@ -195,6 +195,19 @@ const globalCss = css`
       font-size: 1.5rem !important;
     }
   }
+
+  .vertical-iframe {
+    position: relative;
+    width: 100%;
+    padding-top: 177.77777777778%;
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
 `;
 
 export default globalCss;

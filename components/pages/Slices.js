@@ -4,6 +4,7 @@ import HeroSection from "./HeroSection";
 import Video from "./Video";
 import FullwidthGallery from "./FullwidthGallery";
 import FadeIn from "../FadeIn";
+import VerticalVideos from "./VerticalVideos";
 
 export default function Slices({ slices, letterFrom, title }) {
   const slice = slices.map((s, i) => {
@@ -27,6 +28,12 @@ export default function Slices({ slices, letterFrom, title }) {
         return (
           <FadeIn key={i}>
             <Copy copy={s?.copy} />
+          </FadeIn>
+        );
+      case "vertical_video":
+        return (
+          <FadeIn key={i}>
+            <VerticalVideos input={s} />
           </FadeIn>
         );
       case "gallery":
