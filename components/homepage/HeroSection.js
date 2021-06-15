@@ -50,7 +50,9 @@ export default function HeroSection({ video, image, subtitle, title, poster }) {
   return (
     <>
       <HeroStyles>
-        {image && !video && <Image data={image} className="hero-image" />}
+        {image && !video && (
+          <Image data={image} className="hero-image" fadeInDuration={0} />
+        )}
         {video && (
           <video
             className="hero-image"

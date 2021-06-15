@@ -105,7 +105,7 @@ export default function SeeMore({ data, letterFrom }) {
                     <Image
                       data={t?.contentBlocks[0]?.heroImage?.responsiveImage}
                       className="see-more-image"
-                      fadeInDuration={100}
+                      fadeInDuration={0}
                     />
                   )}
                   <p>{letterFrom}</p>

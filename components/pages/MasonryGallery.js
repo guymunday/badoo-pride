@@ -45,7 +45,7 @@ export default function MasonryGallery({ images }) {
               <Image
                 data={img?.responsiveImage}
                 className="gallery-grid-image"
-                fadeInDuration={100}
+                fadeInDuration={0}
               />
             </div>
           );
