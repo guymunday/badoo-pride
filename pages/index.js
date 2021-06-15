@@ -97,6 +97,7 @@ query HomePage($isBlank: BooleanType = "", $locale: SiteLocale) {
       url
     }
     heroImage {
+      url
       responsiveImage(imgixParams: {auto: format, fit: crop}) {
         src
         title

@@ -7,6 +7,7 @@ export default function HomepageContent({ data }) {
       <HeroSection
         video={data?.homePage?.heroVideo?.url}
         image={data?.homePage?.heroImage?.responsiveImage}
+        poster={data?.homePage?.heroImage?.url}
         subtitle={data?.homePage?.presents}
         title={data?.homePage?.aLetterFrom}
       />

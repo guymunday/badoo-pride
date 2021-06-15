@@ -46,7 +46,7 @@ const HeroStyles = styled.section`
   }
 `;
 
-export default function HeroSection({ video, image, subtitle, title }) {
+export default function HeroSection({ video, image, subtitle, title, poster }) {
   return (
     <>
       <HeroStyles>
@@ -60,7 +60,7 @@ export default function HeroSection({ video, image, subtitle, title }) {
             loop
             playsInline
             controls={false}
-            poster={image}
+            poster={poster}
           />
         )}
         <div className="hero-title">
