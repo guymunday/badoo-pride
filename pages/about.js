@@ -128,7 +128,7 @@ query AboutQuery($locale: SiteLocale) {
       ... on FullWidthGalleryRecord {
         _modelApiKey
         gallery {
-          responsiveImage(imgixParams: {auto: compress, fit: crop}) {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
             src
             title
             alt
@@ -143,7 +143,7 @@ query AboutQuery($locale: SiteLocale) {
       ... on GalleryRecord {
         _modelApiKey
         gallery {
-          responsiveImage(imgixParams: {auto: compress, fit: crop}) {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
             src
             title
             alt

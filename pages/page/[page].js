@@ -97,7 +97,7 @@ query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType, $loc
     }
     heroImage {
       url
-      responsiveImage(imgixParams: {auto: compress, fit: crop}) {
+      responsiveImage(imgixParams: {auto: format, fit: crop}) {
         src
         title
         alt
@@ -117,7 +117,7 @@ query HomePage($isBlank: BooleanType = "", $limit: IntType, $skip: IntType, $loc
       ... on HeroSectionRecord {
         heroImage {
           url
-          responsiveImage(imgixParams: {auto: compress, fit: crop}) {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
             src
             title
             alt

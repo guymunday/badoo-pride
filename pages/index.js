@@ -98,7 +98,7 @@ query HomePage($isBlank: BooleanType = "", $locale: SiteLocale) {
     }
     heroImage {
       url
-      responsiveImage(imgixParams: {auto: compress, fit: crop}) {
+      responsiveImage(imgixParams: {auto: format, fit: crop}) {
         src
         title
         alt
@@ -117,7 +117,7 @@ query HomePage($isBlank: BooleanType = "", $locale: SiteLocale) {
     contentBlocks {
       ... on HeroSectionRecord {
         heroImage {
-          responsiveImage(imgixParams: {auto: compress, fit: crop}) {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
             src
             title
             alt

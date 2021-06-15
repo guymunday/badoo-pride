@@ -123,7 +123,7 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "", $locale: SiteLocale)
       ... on HeroSectionRecord {
         _modelApiKey
         heroImage {
-          responsiveImage(imgixParams: {auto: compress, fit: crop}) {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
             src
             title
             alt
@@ -138,7 +138,7 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "", $locale: SiteLocale)
       ... on FullWidthGalleryRecord {
         _modelApiKey
         gallery {
-          responsiveImage(imgixParams: {auto: compress, fit: crop}) {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
             src
             title
             alt
@@ -153,7 +153,7 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "", $locale: SiteLocale)
       ... on GalleryRecord {
         _modelApiKey
         gallery {
-          responsiveImage(imgixParams: {auto: compress, fit: crop}) {
+          responsiveImage(imgixParams: {auto: format, fit: crop}) {
             src
             title
             alt
