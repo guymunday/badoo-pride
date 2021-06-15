@@ -60,6 +60,7 @@ export default function HeroSection({ video, image, subtitle, title }) {
             loop
             playsInline
             controls={false}
+            poster={image}
           />
         )}
         <div className="hero-title">
