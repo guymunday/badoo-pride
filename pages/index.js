@@ -110,7 +110,7 @@ query HomePage($isBlank: BooleanType = "", $locale: SiteLocale) {
       }
     }
   }
-  allPages(orderBy: order_ASC, locale: $locale, filter: {publishThisLoacle: {eq: "true"}, title: {isBlank: $isBlank}}, first: 8) {
+  allPages(orderBy: order_ASC, locale: $locale, filter: { title: {isBlank: $isBlank}}, first: 8) {
     id
     slug
     title

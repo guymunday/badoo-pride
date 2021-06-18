@@ -11,7 +11,7 @@ export default function ContentPage({ english, spanish, french }) {
   const router = useRouter();
   const { locale } = router;
 
-  if (locale === "es") {
+  if (locale === "es" && spanish?.allPages[0]) {
     return (
       <>
         <Head>{renderMetaTags(spanish?.allPages[0]?.seo)}</Head>
@@ -30,7 +30,7 @@ export default function ContentPage({ english, spanish, french }) {
     );
   }
 
-  if (locale === "fr") {
+  if (locale === "fr" && french?.allPages[0]) {
     return (
       <>
         <Head>{renderMetaTags(french?.allPages[0]?.seo)}</Head>
@@ -49,22 +49,28 @@ export default function ContentPage({ english, spanish, french }) {
     );
   }
 
-  return (
-    <>
-      <Head>{renderMetaTags(english?.allPages[0]?.seo)}</Head>
-      <Menu data={english?.menu} />
-      <Slices
-        slices={english?.allPages[0]?.contentBlocks}
-        letterFrom={english?.homePage?.aLetterFrom}
-        title={english?.allPages[0]?.title}
-      />
-      <SeeMore
-        data={english?.seeMore}
-        letterFrom={english?.homePage?.aLetterFrom}
-      />
-      <Footer data={english?.footer} />
-    </>
-  );
+  if (english.allPages[0]) {
+    return (
+      <>
+        <Head>{renderMetaTags(english?.allPages[0]?.seo)}</Head>
+        <Menu data={english?.menu} />
+        <Slices
+          slices={english?.allPages[0]?.contentBlocks}
+          letterFrom={english?.homePage?.aLetterFrom}
+          title={english?.allPages[0]?.title}
+        />
+        <SeeMore
+          data={english?.seeMore}
+          letterFrom={english?.homePage?.aLetterFrom}
+        />
+        <Footer data={english?.footer} />
+      </>
+    );
+  }
+
+  if (locale === "en" && !english.allPages[0]) {
+    router.push("/");
+  }
 }
 
 const SLUG_QUERY = `
@@ -90,7 +96,7 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "", $locale: SiteLocale)
     cookiesLink
     sponsorMessage
   }
-  allPages(locale: $locale, filter: { slug: {eq: $slug}}) {
+  allPages(locale: $locale, filter: { slug: {eq: $slug}, title: {isBlank: $isBlank}}) {
     slug
     title
        seo: _seoMetaTags {
@@ -174,7 +180,7 @@ query PageQuery($slug: String!, $isBlank: BooleanType = "", $locale: SiteLocale)
   homePage(locale: $locale) {
     aLetterFrom
   }
-  seeMore: allPages(orderBy: order_ASC,locale: $locale, filter: {publishThisLoacle: {eq: "true"}, title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
+  seeMore: allPages(orderBy: order_ASC,locale: $locale, filter: {title: {isBlank: $isBlank}, slug: {neq: $slug}}, first: 3) {
     id
     slug
     title
