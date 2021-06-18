@@ -68,7 +68,7 @@ export default function ContentPage({ english, spanish, french }) {
     );
   }
 
-  if (locale === "en" && !english.allPages[0]) {
+  if (!english.allPages[0] && !spanish.allPages[0] && !french.allPages[0]) {
     router.push("/");
   }
 }
